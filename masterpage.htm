@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="Shortcut icon" type="image/x-icon" href="https://www.edp.ch/favicon.ico">
+    <link rel="icon" type="image/ico" href="/images/Edi_Maskottchen.ico">
+    <title>Demoshop - edp-services ag</title>
+    <!-- JQUERY SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrapcss/bootstrap.css" rel="stylesheet">
+    <link href="/css/jquery/jquery-ui.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/shop-classes.css">
+    <link rel="stylesheet" href="css/demoshop-classes.css">
+    <!-- datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <!-- datepicker -->
+    <script src="/js/bootstrapjs/bootstrap-datepicker.min.js"></script>
+    <!-- JAVASCRIPT/JQUERy -->
+    <script src="/js/pageManager/checkIfLoggedInBenutzerkonto.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/pageManager/yearChangeFooter.js"></script>
+    <script src="/js/pageManager/closeMouseDown.js"></script>
+    <script src="/js/pageManager/checkIsLoggedIn.js"></script>
+    <script src="/js/pageManager/caruselHome.js"></script>
+    <script src="/js/pageManager/collapsible.js"></script>
+    <script src="/js/pageManager/umleitungActive.js"></script>
+    <script src="/js/pageManager/waitAfterClickAandButton.js"></script>
+</head>
+
+<body id="body">
+
+    <!-- Desktop-Navigation -->
+    <nav class="hidden-xs fixed-top head-clr fixed border-grey ContentContainer" id="topnavigation">
+        <div class=" mx-auto justify-content-between">
+            <div class="col-sm-5">
+                <div onclick="ABOS();" class="float-left visible-md visible-sm navbar-toggle collapsed mobilenav zIndexWhite" role="button" data-toggle="collapse" data-target="#mobiletopnavigation" aria-expanded="false">
+                    <span class="icon-bar edpwhite"></span>
+                    <span class="icon-bar edpwhite"></span>
+                    <span class="icon-bar edpwhite"></span>
+                </div>
+                <div class="hidden-md hidden-sm">
+                    <ul class="nav navbar-nav pt-4 mt-2">
+                        <li class="dropdown ml-3">
+                            <span class="text-white pointer fs-nav">Abos</span>
+                            <span class="glyphicon glyphicon glyphicon-chevron-down text-white"></span>
+                            <div class="dropdown-content">
+                                <cms type="methode" value="fisVLNavi" parameter="ABOS" defaultvalue="abos" startitem="" maximum="" pageoutput="false">
+                                    <cms type="outputTag" value="a" class="inactive" data-target="subnav-key2" href="/?Artikelliste?{1}">{0}</cms>
+                                </cms>
+                            </div>
+                        </li>
+                        <li class="dropdown ml-3">
+                            <span class="text-white pointer fs-nav">Printmedien</span>
+                            <span class="glyphicon glyphicon glyphicon-chevron-down text-white"></span>
+                            <div class="dropdown-content">
+                                <cms type="methode" value="fisVLNavi" parameter="EINZ" defaultvalue="einz" startitem="" maximum="" pageoutput="false">
+                                    <cms type="outputTag" value="a" class="inactive" data-target="subnav-key1" href="/?Artikelliste?{1}">{0}</cms>
+                                </cms>
+                            </div>
+                        </li>
+                        <li class="dropdown ml-3">
+                            <span class="text-white pointer fs-nav">Artikel</span>
+                            <span class="glyphicon glyphicon glyphicon-chevron-down text-white"></span>
+                            <div class="dropdown-content">
+                                <cms type="methode" value="fisVLNavi" parameter="ARTN" defaultvalue="artn" startitem="" maximum="" pageoutput="false">
+                                    <cms type="outputTag" value="a" class="inactive" data-target="subnav-key4" href="/?Artikelliste?{1}">{0}</cms>
+                                </cms>
+                            </div>
+                        </li>
+                        <li class="dropdown ml-3">
+                            <span class="text-white pointer fs-nav">Spezial</span>
+                            <span class="glyphicon glyphicon glyphicon-chevron-down text-white"></span>
+                            <div class="dropdown-content">
+                                <cms type="methode" value="fisVLNavi" parameter="SPEZ" defaultvalue="spez" startitem="" maximum="" pageoutput="false">
+                                    <cms type="outputTag" value="a" class="inactive" data-target="subnav-key3" href="/?Artikelliste?{1}">{0}</cms>
+                                </cms>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-2 d-flex justify-content-center p-2" id="homelogo">
+                <a href="/?home">
+                    <img src="images/edp_logo_weiss.png" alt="edp-logo" class="edpLogo height54">
+                </a>
+            </div>
+
+            <div class="col-sm-5">
+                <ul class="nav navbar-nav navbar-right hidden-xs mt-2">
+                    <li>
+                        <a onclick="login();" id="navLogin" class="text-white pointer">
+                            <span class="glyphicon glyphicon-user fs-nav"></span>
+                            <span class="fs-nav hidden-sm">
+                                <cms type="shopModul" value="isLoggedIn" notLoggedInLink="" loggedInLinkValue="Profil"
+                                    loggedInLink="" notLoggedInLinkValue="Login">
+                                    <cms type="outputTag" value="span" class="line-height">
+                                        <span id="sp_loginRegisterIconMob"></span>&nbsp;{1}</cms>
+                            </cms>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="shoppingCart();" id="openShoppingCart" class="shoppingCartFunction text-white pointer" data-toggle="modal" data-target="#warenkorbModal">
+                            <span class="glyphicon glyphicon-shopping-cart text-white fs-nav shopping-cart"></span>
+                            <cms type="shopModul" value="warenkorbArtikel">
+                                <cms type="outputTag" rel="tooltip" title="{0} Artikel im Warenkorb" value="span" class="fs-nav text-white">&nbsp; Warenkorb [ {0} ]</cms>
+                            </cms>
+                        </a>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </nav>
+    <header>
+
+        <!--- Mobile-Navigation -->
+        <div class="visible-xs fixed-top nav-mobile">
+            <nav class="navbar-default">
+                <div class="dark">
+                    <div class="d-flex height-nav">
+                        <div onclick="ABOS();" class="navbar-toggle collapsed mobilenav pointer pt-4">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </div>
+                        <div class="mx-auto p-2">
+                            <a href="/?home"><img alt="edp-services ag" src="images/edp_logo_weiss.png" class="height50"></a>
+                        </div>
+                        <div><a href="#" onclick="login();" class="pr-3"><span class="glyphicon glyphicon-user p-3 fs-30 text-white"></span></a>
+                            <a href="#" onclick="shoppingCart();" class="shoppingCartFunction" data-toggle="modal" data-target="#warenkorbModal"><span
+                                    class="edgeRight glyphicon glyphicon-shopping-cart fs-30 text-white"></span>
+                                <div class="warenkorb-anzahl dispNone">
+                                    <cms type="shopModul" value="warenkorbArtikel">
+                                        <cms type="outputTag" rel="tooltip" title="{0} Artikel im Warenkorb"
+                                            value="span" id="AnzahlArtikel" class="anzahl-nummer">{0}</cms>
+                                    </cms>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!--       include-Content         -->
+    <main>
+        <div class="background-grey">
+            <div id="homeContainer" class="ContentContainer edpwhite vh100">
+                <div class="smallSpacer text-white">'</div>
+                <div id="homecolmd" class="col-xs-12 edpwhite">
+                    <div class="spacer"></div>
+                    <cms type="includeContent" value=""></cms>
+
+                </div>
+                <div class="spacer text-white hidden-xs edpwhite">&nbsp;</div>
+                <div class="visible-xs edpwhite">&nbsp;</div>
+            </div>
+        </div>
+        <div class="hidden-xs marg190zIdxM400"></div>
+    </main>
+
+    <!--    Footer-Desktop    -->
+    <div class="hidden-xs">
+        <div class="bgc_grey">
+            <div class="text-white footer fixed-bottom ContentContainer border-grey colorgray">
+                <div class="ContentContainer footerInfoStart">
+                    <div class="d-flex line-height-7">
+                        <div class="col-md-3">
+                            <img src="/images/Edi_Maskottchen_rgb.png" alt="EDP-Logo" class=" footerLogo">
+                        </div>
+                        <div class="col-md-3">
+                            <!-- <p><b>Menu</b></p> -->
+                            <div class="smallSpacer"></div>
+                            <a href="/?home" class="text-white">Home</a>&emsp;&emsp;
+                            <a href="/?Hilfe" class="text-white">Hilfe</a>
+                            <br>
+                            <a href="/?Kontakt" class="text-white">Kontakt</a>&emsp;
+                            <a href="/images/agb_de-CH.pdf" target="_blank" class="text-white"> AGB</a>
+                            <br>
+                            <a href="http://www.edp.swiss" target="_blank" class="text-white">Web</a>
+                        </div>
+                        <div class="col-md-3 mx-auto">
+                            <a href="tel:+41413491717"></a>
+                            </a>
+                            <p><b>Kontakt</b></p>
+                            <p class="text-white"><a class="text-white" target="_blank" href="https://www.google.ch/maps/place/Horwerstrasse+62,+6010+Kriens/@47.0288651,8.2904096,17z/data=!3m1!4b1!4m5!3m4!1s0x478ffaffaa1baca5:0x48e9d958fcf4!8m2!3d47.0288651!4d8.2925983">
+                                    edp-services ag<br>Horwerstrasse 62 <br>6010 Kriens</a></p>
+
+                        </div>
+                        <div class="col-md-3">
+                            <br>
+                            <a class="footerATag" href="tel:+41413491717">Telefon: +41 41 349 17 17<br></a>
+                            <a class="footerATag" href="tel:+41413491700">Hotline: +41 41 349 17 00<br></a>
+                            <a class="footerATag" href="mailto:info@edp.ch">Mail: info@edp.ch</a>
+
+                        </div>
+                    </div>
+                    <hr class="edpgreySmall">
+                </div>
+                <div class="bigcontainer footerInfo mx-auto">
+                    <div class="d-flex">
+                        <div class="mx-auto">
+                            <p class="smallTxt">© edp-services ag <span id="aktuellesJahr" class="smallTxt">aktuelles
+                                    Jahr</span> alle Rechte vorbehalten</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    Footer-Mobile    -->
+    <div class="visible-xs mt-5">
+        <div class="mt-5">
+            <div class="col-xs-12 mb-4 mt-5">
+                <div class="collapsible collapsible_footer text-center dark">INFOS +</div>
+                <div class="coll-content">
+                    <div class="d-flex text-center flex-column line-height-7 p-3 font-weight-bold">
+                        <a href="/?home">Home</a>
+                        <a href="/?Hilfe">Hilfe</a>
+                        <a href="/?Kontakt">Kontakt</a>
+                        <a href="/images/agb_de-CH.pdf" target="_blank"> AGB</a>
+                        <a href="http://www.edp.swiss" target="_blank">Web</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 text-center pb-2">
+                <p>© edp-services ag <span id="aktuellesJahr2">aktuelles Jahr</span> alle Rechte vorbehalten</p>
+            </div>
+        </div>
+    </div>
+
+    <!--       Login-Modul        -->
+    <div id="login" class="screen-disable fixed-top ContentContainer pr-1">
+        <div class="w-100">
+            <div class="abo-login-shopping-box-top pointer" onclick="ModalClose()"></div>
+            <div class="abo-login-shopping-box float-right" id="LoginInner">
+                <p onclick="ModalClose()" class="close m-2 pt-3 pr-3">x</p>
+
+                <div id="loginModul" class="screen-disable">
+                    <br>
+                    <h4 class='pl-4 pt-3 pb-2'><b>Mein Benutzerkonto</b></h4>
+                    <div>
+                        <form action="/shop/loginUser" method="post" data-toggle="validator">
+                            <input type="hidden" name="loginOK_hidden" value="/?Benutzerkonto_Daten">
+                            <div class="col-sm-12">
+                                <label for="login_user" class="fosi14">E-Mail:</label>
+                                <input type="email" class="form-control w-100" id="login_user" name="login_user" placeholder="E-Mail-Adresse" required value="">
+                            </div>
+                            <div class="col-sm-12">
+                                <br>
+                                <label for="login_pw" class="fosi14">Passwort:</label>
+                                <input type="password" class="form-control input-sm pwd checkme" id="login_pw" data-minlength="6" name="login_pw" placeholder="Passwort" required value="">
+                            </div>
+                            <div class="col-sm-12">
+                                <br>
+                                <input type="submit" class="btn btn-md btn-primary w-100" value="Anmelden">
+                                <br>
+                                <br>
+                                <input class="w-100 btn btn-light" type="submit" onclick="this.form.action='/shop/resetpw';this.form.submit();" value="Passwort vergessen">
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="h4"><b>Registrieren</b></p>
+                        <button onclick="location.href='/?Registration_ohne_Abo'" type="button" class="btn btn-primary btn-clr w-100">Benutzerkonto erstellen</button>
+                        <br>
+                        <br>
+                        <a href="/?Registration_mit_Abo">- Ich besitze bereits ein Abo?</a>
+                        <br>
+                        <a href="/?Registration_Unternehmung">- Angehöriger einer Organisation / Unternehmen mit
+                            Abo?</a>
+							<br><br><br>
+                    </div>
+                </div>
+
+                <div id="loggedInModul" class="screen-disable">
+                    <div class="col-sm-12 pb-3">
+                        <h4><b>Benutzerkonto</b></h4>
+                    </div>
+                    <div class="col-sm-12 line-height-7">
+                        <button onclick="location.href='/?Benutzerkonto_Daten'" type="button" class="btn btn-primary btn-clr w-100">Mein Benutzerkonto</button>
+                        <br>
+                        <br>
+                        <button onclick="location.href='/shop/logOffUser?startUrl=/?home'" type="button" class="btn btn-primary btn-clr w-100">Abmelden</button>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col-sm-12">
+                        <hr>
+                        <p><b>Newsletter</b></p>
+                        <p>Melde dich für den EDP Newsletter an und verpasse keine Angebote, Exklusive Deals & Gutscheine mehr.
+                        </p>
+                        <label for="login_user" class="fosi14">E-Mail*:</label>
+                        <input type="email" class="form-control w-100" id="newsletter" name="login_user" placeholder="E-Mail-Adresse" required> <br>
+                        <button class="btn btn-primary w-100">Bestätigen</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="margBot50"></div>
+        </div>
+    </div>
+
+    <!--        Einkaufswagen         -->
+    <div id="shoppingCart" class="screen-disable fixed-top ContentContainer pr-1">
+        <div class="abo-login-shopping-box-top pointer" onclick="ModalClose()"></div>
+        <div class="abo-login-shopping-box float-right" id="ShoppingCardInner">
+            <div class="col-sm-12">
+                <p onclick="ModalClose()" class="close m-2 pt-3 pr-3">x</p>
+                <br>
+                <h4 class='pl-2 pt-3 pb-2'><b>Warenkorb</b></h4>
+                <cms type="shopModul" value="warenkorbArtikel">
+                    <cms type="outputTag" value="span" id="SP_AnzArtikelWarenkorb" class="dispNone">{0}</cms>
+                </cms>
+                <div class="scroll-shop">
+                    <cms type="shopModul" value="warenkorbArtikelListe">
+                        <div class="pr-2 pb-3 d-flex borTopWhiteWidt">
+                            <div class="p-3">
+                                <cms type="methode" value="fisVLBilder" parameter="{0}" defaultvalue="" startitem="" maximum="1" pageoutput="false">
+                                    <cms class="img-warenkorb" type="outputTag" value="img" src="/images/artikel/{0}" onerror="this.onerror=null;this.src='/images/artikel/no-image-available.png';">
+                                    </cms>
+                                </cms>
+                            </div>
+                            <div class="p-3">
+                                <p><b>
+                                        <cms type="outputTag" value="span">{1}</cms>
+                                    </b></p>
+                                <p><b>
+                                        <cms type="outputTag" value="span">{3}</cms> CHF
+                                    </b></p>
+                                <p>Menge:
+                                    <cms type="outputTag" value="a" class="colGrayCurPoint" href="/shop/removeItemMenge?itemID={0}&showCard=true" title="Menge reduzieren" class="MengeMinus">-</cms>
+                                    <cms type="outputTag" value="span">{2}</cms>
+                                    <cms type="outputTag" value="a" class="colGrayCurPoint" href="/shop/addItemMenge?itemID={0}&showCard=true" title="Menge erhöhen" class="MengePlus">+</cms>
+                                </p>
+                                <cms type="outputTag" value="a" class="pointer" href="/shop/removeItem?itemID={0}&showCard=true" onclick="javascript:return confirm('Artikel wirklich entfernen?')" title="Artikel entfernen">Entfernen</cms>
+                            </div>
+                        </div>
+                    </cms>
+                </div>
+                <div class="dispNone DV_WarenkorbEmpty">
+                    <div class="alert alert-danger">
+                        <h4><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp; Keine Artikel im Warenkorb</h4>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <cms type="shopModul" value="warenkorbTotalBetrag">
+                        <cms type="outputTag" value="h4">Bruttopreis: {1} CHF</cms>
+                    </cms>
+                </div>
+
+                <cms type="shopModul" value="isLoggedIn" notLoggedInLink="/?Offerte_Anmeldung_Registration" loggedInLinkValue="Zur Kasse" loggedInLink="/?Offerte_Angemeldet" notLoggedInLinkValue="Zur Kasse">
+                    <cms type="outputTag" value="button" class="btn btn-md btn-primary shop-btn line-height" onclick="location.href='{0}'">{1}</cms>
+                </cms>
+
+                <div class="w-100">
+                    <a href="/shop/killWarenkorb" onclick="javascript:return confirm('Alle Artikel im Warenkorb löschen?')" title="Warenkorb löschen" class="btn btn-md shop-btn">Warenkorb löschen</a>
+                </div>
+                <div class="w-100">
+                    <button class="btn btn-md txtScroll shop-btn" onclick="ModalClose()">Weiter einkaufen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ABOS -->
+    <div id="ABOS" class="screen-disable fixed-top ContentContainer">
+        <div class="abo-login-shopping-box-top pointer" onclick="ModalClose()"></div>
+        <div class="abo-login-shopping-box" id="AbosInner">
+            <div class="col-sm-12 mb-5">
+                <button class="navbar-toggler" onclick="ModalClose()">
+                    <span class="navbar-toggler-icon closeSearchNav">X</span>
+                </button>
+            </div>
+            <div class="col-sm-12">
+                <hr class="mt-1">
+                <div class="collapsible abocoll mb-2 fs-nav pointer">Abos<span class="glyphicon glyphicon glyphicon-chevron-down fs-nav float-right mr-5"></span></div>
+                <div class="coll-content fs-nav mb-3" style="display: none;">
+                    <cms type="methode" value="fisVLNavi" parameter="ABOS" defaultvalue="abos" startitem="" maximum="" pageoutput="false">
+                        <cms type="outputTag" value="a" class="inactive fs-innernav col-xs-12" data-target="subnav-key2" href="/?Artikelliste?{1}">{0}</cms>
+                    </cms>
+                </div>
+                <hr>
+                <div class="collapsible abocoll mb-2 fs-nav pointer">Printmedien<span class="glyphicon glyphicon glyphicon-chevron-down fs-nav float-right mr-5"></span></div>
+                <div class="coll-content fs-nav mb-3" style="display: none;">
+                    <cms type="methode" value="fisVLNavi" parameter="EINZ" defaultvalue="einz" startitem="" maximum="" pageoutput="false">
+                        <cms type="outputTag" value="a" class="inactive fs-innernav col-xs-12" data-target="subnav-key2" href="/?Artikelliste?{1}">{0}</cms>
+                    </cms>
+                </div>
+                <hr>
+                <div class="collapsible abocoll mb-2 fs-nav pointer">Artikel<span class="glyphicon glyphicon glyphicon-chevron-down fs-nav float-right mr-5"></span></div>
+                <div class="coll-content fs-nav mb-3" style="display: none;">
+                    <cms type="methode" value="fisVLNavi" parameter="ARTN" defaultvalue="artn" startitem="" maximum="" pageoutput="false">
+                        <cms type="outputTag" value="a" class="inactive fs-innernav col-xs-12" data-target="subnav-key2" href="/?Artikelliste?{1}">{0}</cms>
+                    </cms>
+                </div>
+                <hr>
+                <div class="collapsible abocoll mb-2 fs-nav pointer">Spezial
+                    <span class="glyphicon glyphicon glyphicon-chevron-down fs-nav float-right mr-5"></span>
+                </div>
+                <div class="coll-content fs-nav mb-3" style="display: none;">
+                    <cms type="methode" value="fisVLNavi" parameter="SPEZ" defaultvalue="spez" startitem="" maximum="" pageoutput="false">
+                        <cms type="outputTag" value="a" class="inactive fs-innernav col-xs-12" data-target="subnav-key2" href="/?Artikelliste?{1}">{0}</cms>
+                    </cms>
+                </div>
+                <hr>
+                <div class="margBot50"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- bestellung ausfürhen -->
+    <div class="modal fade" id="farosBestellungausfuehren" role="dialog" aria-labelledby="farosBestellungausfuehrenModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="farosBestellungausfuehrenModalLabel">
+                        Bestellung wird ausgeführt - bitte warten
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active width100Pro" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- allgemeiner fehler -->
+    <div id="errorModal" class="modal fade zIndex" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content fehler -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <div id="errorModalContent"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-default" data-dismiss="modal">Schliessen</button> &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- allgemeiner info -->
+    <div id="infoModal" class="modal zIndex fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content info  -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <div id="infoModalContent"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-lg btn-default" data-dismiss="modal">Schliessen</button> &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+    <noscript>
+        <div style="position: fixed; top: 0px; left: 0px; z-index: 30000000; 
+                    height: 100%; width: 100%; background-color: #FFFFFF">
+            <p style="margin-left: 10px">Bitte aktivieren Sie Javascript, um den Webshop nutzen zu können.</p>
+        </div>
+    </noscript>
+</body>
+
+<script>
+    // Wird benötigt
+    // Password show Button 
+    var pw = document.getElementById('passwort');
+    var confirm_password = document.getElementById('passwort_hidden');
+    var new_pw = document.getElementById('new_pw');
+    var new_pw_validate = document.getElementById('new_pw_validate');
+
+    function PWcheck() {
+        if (pw.value != confirm_password.value) {
+            confirm_password.setCustomValidity('Passwörter stimmen nicht überein');
+        } else if (/\s/.test(pw.value) || pw.value.search(/\?/) != "-1" || pw.value.search(/\&/) != "-1") {
+            pw.setCustomValidity('Passwörter dürfen kein Leerschlag, (?) oder ein (&) enthalten.');
+        } else {
+            confirm_password.setCustomValidity('');
+            pw.setCustomValidity('');
+        }
+    }
+
+    function showPW() {
+        if (pw.type === "password") {
+            pw.type = "text";
+        } else {
+            pw.type = "password";
+        }
+    }
+
+    function showSecondPW() {
+        if (confirm_password.type === "password") {
+            confirm_password.type = "text";
+        } else {
+            confirm_password.type = "password";
+        }
+    }
+
+    var passwordcheck = document.getElementById('passwort_hidden');
+
+    function showHiddenPW() {
+        if (passwordcheck.type === "password") {
+            passwordcheck.type = "text";
+        } else {
+            passwordcheck.type = "password";
+        }
+    }
+
+    function checkNewPW() {
+        if (new_pw.value != new_pw_validate.value) {
+            new_pw_validate.setCustomValidity('Passwörter stimmen nicht überein');
+        } else if (/\s/.test(new_pw.value) || new_pw.value.search(/\?/) != "-1" || new_pw.value.search(/\&/) != "-1") {
+            new_pw.setCustomValidity('Passwörter dürfen kein Leerschlag, (?) oder ein (&) enthalten.');
+        } else {
+            new_pw_validate.setCustomValidity('');
+            new_pw.setCustomValidity('');
+        }
+    }
+
+    function showNewPW_Benutzerkonto() {
+        if (new_pw.type === "password") {
+            new_pw.type = "text";
+        } else {
+            new_pw.type = "password";
+        }
+    }
+
+    function showSecondPW_Benutzerkonto() {
+        if (new_pw_validate.type === "password") {
+            new_pw_validate.type = "text";
+        } else {
+            new_pw_validate.type = "password";
+        }
+    }
+
+
+    function StartPageFunction() {
+        // für collapsible
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                try {
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                } catch (e) {}
+            });
+        }
+    }
+
+    var button = document.querySelector("button");
+    button.addEventListener("click", check);
+    var a = document.querySelector("a");
+    a.addEventListener("click", check);
+
+    function check() {
+        document.body.style.cursor = 'wait';
+    };
+    document.body.style.cursor = 'wait';
+    window.onload = function() {
+        document.body.style.cursor = 'default';
+    }
+
+    // start function
+    try {
+        StartPageFunction();
+        console.log(hello)
+    } catch (e) {
+        // not available on this site
+    }
+</script>
