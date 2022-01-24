@@ -1,0 +1,145 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInline"><a href="/?Benutzerkonto_Daten">Benutzerkonto</a> / </h5>
+        <h5 class="dispInlineBold">Abos</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="text-center">Benutzerkonto</h2>
+    </div>
+</div>
+
+<div class="col-xs-12 mb-5">
+    <div class="text-center">
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Daten">
+            <h4>Daten</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Abos">
+            <h4><u>Abos</u></h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
+            <h4>Bestellungen</h4>
+        </a>
+        <!--
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Zugaenge"><h4>Zugänge</h4></a>
+        -->
+    </div>
+</div>
+
+<h3>Meine Abonnemente</h3>
+<div class="row">
+    <div class="col-sm-12">
+        <cms type="shopModul" value="manageAbos">
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <h4>
+                        <cms type="outputTag" value="span">{3}</cms>
+                    </h4>
+                    <small>
+                        <cms type="outputTag" value="span">Dauer: {4} - {5}</cms>
+                    </small><br>
+                    <small>
+                        <cms type="outputTag" value="span">Fakturiert bis: {6}</cms>
+                    </small><br>
+                    <small>
+                        <span>Status: </span>
+                        <cms type="outputTag" value="a" id="AboStatus" titel="Zeige Abo Informationen"
+                            href="javascript:ShowAboInfos({0},{1},'{15}',{16});" class="AboStatus">{8}</cms>
+                    </small><br>
+                </div>
+
+                <div class="col-sm-7">
+
+                    <cms type="outputTag" value="a" class="btn btn-md btn-link p-0 pt-2" href="/?Benutzerkonto_Abo_umleiten?mutType={11}&vorgangsnr={0}&posNr={1}&artikel={2}">{12}</cms>
+                    &nbsp;<br>
+                    <cms type="outputTag" value="a" class="btn btn-md btn-link p-0 pt-2" href="/?Benutzerkonto_Abo_unterbrechen?mutType={13}&vorgangsnr={0}&posNr={1}&artikel={2}">{14}
+                    </cms>&nbsp;<br>
+                    <cms type="outputTag" value="a" class="btn btn-md btn-link p-0 pt-2" href="/?Benutzerkonto_Abo_kuenden?mutType={9}&vorgangsnr={0}&posNr={1}&artikel={2}">{10}</cms>
+                    &nbsp;<br>
+
+                </div>
+
+                <div class="col-sm-12">
+                    <hr>
+                </div>
+            </div>
+        </cms>
+
+        <!-- LINK ÄNDERN -->
+        <button class="btn btn-md btn-primary btn-clr" onclick="location.href='/?home'">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;&nbsp;Abo hinzufügen
+    </button>
+
+        <!-- // abos -->
+
+        <div id="AboInfos_gesperrt" class="modal fade zIndex" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content dispNone">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger">
+                            <strong>Abo gesperrt!</strong>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-lg btn-default" data-dismiss="modal">Schliessen</button> &nbsp;
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- abo info modals (mehrere) -->
+        <cms type="shopModul" value="aboInfos">
+            <cms type="outputTag" value="div" id="AboInfos_{0}{1}" class="modal fade" role="dialog" style="z-index:20000;">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Abo-Informationen<button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="Aboaktiv_{0}" style="display:none;">
+                                <span style="color:green;">Aktiv</span>
+                            </div>
+                            <div id="Abogesperrt_{0}" style="display:none;">
+                                <span style="color:red;">Gesperrt</span>
+                            </div>
+                            <table id="AboInfoTable" class="table table-hover">
+
+                                <tbody>
+                                    <cms type="shopModul" value="aboInfosDetails" vorgangsnr="{0}" posnr="{1}">
+                                        <tr>
+                                            <td>
+                                                <cms type="outputTag" value="span">{0}</cms>
+                                            </td>
+                                            <td>
+                                                <cms type="outputTag" value="button" onclick="CancelAboUmleitungUnterbruch('{2}');" val="{1}" class="btn btn-sm btn-danger showAktivUmlUntr">Entfernen</cms>
+                                            </td>
+                                        </tr>
+                                    </cms>
+                                </tbody>
+                            </table>
+                            <div class="modal-footer">
+                                <button class="btn btn-lg btn-default" data-dismiss="modal">Schliessen</button> &nbsp;
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </cms>
+        </cms>
+    </div>
+</div>

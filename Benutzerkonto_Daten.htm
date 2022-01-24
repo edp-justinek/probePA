@@ -1,0 +1,216 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInlineBold">Benutzerkonto</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="text-center">Benutzerkonto</h2>
+    </div>
+</div>
+
+<div class="col-xs-12 mb-5">
+    <div class="text-center">
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Daten">
+            <h4><u>Daten</u></h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Abos">
+            <h4>Abos</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
+            <h4>Bestellungen</h4>
+        </a>
+        <!--
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Zugaenge"><h4>Zugänge</h4></a>
+        -->
+    </div>
+</div>
+<!--       Benutzerkonto Daten        -->
+
+<h3>Passwort ändern</h3>
+<div class="content-box col-xs-12 mb-5">
+    <form action="/shop/setNewPassword" method="post" data-toggle="validator" class="form-horizontal">
+        <div class="form-group row">
+            <label for="old_pw" class="col-sm-2 col-form-label">Altes Passwort*:</label>
+            <div class="col-sm-3">
+                <input type="password" class="form-control checkme" id="old_pw" name="old_pw" placeholder="Bitte Passwort eingeben" required value="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="new_pw" class="col-sm-2 col-form-label">Neues Passwort*:</label>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input type="password" data-minlength="6" tabindex="0" class="form-control pwd checkme" id="new_pw" name="new_pw" placeholder="Passwort" required>
+                    <span class="input-group-btn">
+                        <button class="btnPWEye btn btn-default reveal" tabindex="-1" type="button" onclick="showNewPW_Benutzerkonto()"><i class="glyphicon glyphicon-eye-open"></i></button>
+                    </span>
+                </div>
+                <span class="help-block">Minimal 6 Zeichen</span>
+            </div>
+            <label for="passwort_hidden"></label>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input type="password" data-minlength="6" tabindex="0" class="form-control pwd checkme" id="new_pw_validate" name="new_pw_validate" data-match="#passwort" data-match-error="Passwörter sind nicht identisch" placeholder="Passwort wiederholen" required>
+                    <span class="input-group-btn">
+                        <button class="btnPWEye btn btn-default reveal" tabindex="-1" type="button" onclick="showSecondPW_Benutzerkonto()"><i class="glyphicon glyphicon-eye-open"></i></button>
+                    </span>
+                </div>
+
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-5"></div>
+            <!-- <label class="col-sm-2 col-form-label"></label> -->
+            <div class="col-sm-3">
+                <input id="PWchange" type="submit" onclick="checkNewPW()" class="btn btn-md btn-primary btn-block btn-clr" value="Passwort ändern">
+            </div>
+        </div>
+    </form>
+</div>
+
+<h3>Kreditkarte verwalten</h3>
+<div class="content-box col-xs-12 mb-5">
+    <cms type="shopModul" value="getSavedCreditCard">
+
+        <!-- for check -->
+        <cms type="outputTag" id="SP_CheckCreditCard" value="span" style="display:none;">{0}</cms>
+        <div class="col-sm-12 ml-5">
+            <cms type="outputTag" id="valueOne" value="div">{0}</cms>
+            <cms type="outputTag" id="valueTwo" value="div">{1}</cms>
+        </div>
+    </cms>
+
+    <!--   <script>
+      var valueOne = document.getElementById("valueOne").innerHTML;
+      console.log("One " + valueOne);
+
+      var valueTwo = document.getElementById("valueTwo").innerHTML;
+      console.log("Two " + valueTwo);
+
+    if(valueOne != "Keine Karte gespeichert"|| valueTwo != "Keine Karte gespeichert"){
+        valueOne.innerHTML = + "/"
+    }else{
+        console.log("no");
+    }
+
+  </script> -->
+
+
+    <br><br>
+    <form action="/shop/setnewcreditcard?savecard=true" method="post" role="form" class="form-horizontal">
+        <button type="submit" class="btn btn-md btn-primary">Kreditkarte ändern / akuallisieren</button>
+    </form>
+</div>
+
+<h3>Adressen verwalten</h3>
+<div class="content-box col-xs-12">
+    <div class="col-md-8 hrBorder">
+        <h4 class="weigBold">Haupt-/Lieferadresse</h4>
+        <cms type="shopModul" value="offerteLieferadresse">
+            <cms type="outputTag" value="a" href="/shop/setKontoEditAdresse?konto_adressnr=r_{0}&successUrl=/?Benutzerkonto_Adresse_bearbeiten" class="btn-link pull-right">Bearbeiten</cms>
+            <cms type="outputTag" value="span">{1}</cms>
+        </cms>
+    </div>
+
+    <div class="col-md-8 hrBorder">
+
+        <h4 class="weigBold pt-3">Rechnungsadressen</h4>
+        <cms type="methode" value="GetRechnungsadressen" parameter="" defaultvalue="" startitem="1" maximum="" pageoutput="false">
+            <cms type="outputTag" value="a" href="/shop/setKontoEditAdresse?konto_adressnr=r_{0}&successUrl=/?Benutzerkonto_Rechnungsadresse_bearbeiten" class="btn-link pull-right">Bearbeiten</cms>
+            <cms type="outputTag" value="span" class="txt">{1}</cms>
+            <br>
+            <hr class="small">
+        </cms>
+        <br>
+        <cms type="methode" value="getadressenrechnung" parameter="" defaultvalue="" startitem="" maximum="" pageoutput="false">
+            <cms type="outputTag" id="NewRechAdr_{0}" value="span" val="{0}">
+                <cms type="outputTag" value="button" onclick="location.href='/shop/setKontoEditAdresse?konto_adressnr={0}&successUrl=/?Benutzerkonto_Rechnungsadresse_erfassen'" class="btn btn-md btn-primary">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;&nbsp;{1}
+                </cms>
+            </cms>
+        </cms>
+    </div>
+
+    <div class="col-sm-8">
+
+        <h4 class="weigBold pt-3">Umleitungsadressen</h4>
+        <cms type="methode" value="getumleitungsadressen" parameter="" defaultvalue="" startitem="" maximum="" pageoutput="false">
+            <cms type="outputTag" value="a" href="/shop/setKontoEditAdresse?konto_adressnr=u_{0}&successUrl=/?Benutzerkonto_Umleitungsadresse_bearbeiten" class="btn-link pull-right">Bearbeiten</cms>
+            <cms type="outputTag" value="span">{1}</cms>
+            <br>
+            <hr class="small">
+        </cms>
+        <br>
+        <cms type="methode" value="getadressenumleitung" parameter="" defaultvalue="" startitem="" maximum="" pageoutput="false">
+            <cms type="outputTag" id="NewUmlAdr_{0}" value="span" val="{0}">
+                <cms type="outputTag" value="button" onclick="location.href='/shop/setKontoEditAdresse?konto_adressnr={0}&successUrl=/?Benutzerkonto_Umleitungsadresse_erfassen'" class="btn btn-md btn-primary">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;&nbsp;{1}
+                </cms>
+            </cms>
+        </cms>
+        <br><br>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <p class="BenutzerTxt borderTop">Newsletter</p>
+    <p>Hier können die wählen, ob sie den Nestletter Aboniert haben möchten.<br> Möchten sie den Newsletter Aboniert haben?
+    </p>
+    <form>
+        <label for="NewsletterNo">Ja:  </label>
+        <input type="radio" onchange="ChangeNewsletter(1);" name="Newsletter" id="NewsletterYes">
+        <label for="NewsletterNo">Nein:   </label>
+        <input type="radio" onchange="ChangeNewsletter(0);" name="Newsletter" id="NewsletterNo">
+    </form>
+</div>
+
+<div class="col-xs-12">
+    <p class="BenutzerTxt borderTop">Papierrechnung</p>
+    <form action="">
+        <label for="PapierrechnungYes">Ja:  </label>
+        <input type="radio" onchange="ChangePapierrechnung(true);" name="Papierrechnung" id="PapierrechnungYes">
+        <label for="PapierrechnungNo">Nein:   </label>
+        <input type="radio" onchange="ChangePapierrechnung(false);" name="Papierrechnung" id="PapierrechnungNo">
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // check papierrechnung
+        $.get("/ajax?action=GetSesionValue&sValue=mailrech&defValue=false", function(restobj) {
+            //alert(restobj);
+            if (restobj == "True" || restobj == "true") {
+                $("#PapierrechnungYes").prop("checked", true);
+                $("#PapierrechnungNo").prop("checked", false);
+            } else {
+                $("#PapierrechnungYes").prop("checked", false);
+                $("#PapierrechnungNo").prop("checked", true);
+            }
+        });
+
+        // check newsletter
+        $.get("/ajax?action=getNewsletter", function(restobj) {
+            //alert(restobj);
+            if (restobj == "true") {
+                $("#NewsletterYes").prop("checked", true);
+                $("#NewsletterNo").prop("checked", false);
+            } else {
+                $("#NewsletterYes").prop("checked", false);
+                $("#NewsletterNo").prop("checked", true);
+            }
+        });
+    });
+
+    function ChangeNewsletter(state) {
+        $.get("/ajax?action=setNewsletter&flag=" + state, function() {});
+    }
+
+    function ChangePapierrechnung(state) {
+        $.get("/shop/setRechnung?papierrechnung=" + state, function() {});
+    }
+</script>

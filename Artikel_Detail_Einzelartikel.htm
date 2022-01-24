@@ -1,0 +1,213 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <cms type="query"
+            value="FOR EACH sytext WHERE sytext.firma = 2 AND sytext.arbgeb = 'VLOB' AND sytext.sprache = 'D' AND sytext.textkey1 = '#praessub#' AND sytext.textkey2 = 'TITEL' NO-LOCK|sytext.textfeld&sytext.textkey1"
+            startitem="" maximum="" pageoutput="false">
+            <cms type="outputTag" value="h5" class="dispInline"><a href="/?Artikelliste?{1}">{0}</a> /</cms>
+            <cms type="query"
+                value="FOR EACH vlartik WHERE vlartik.firma = 2 AND vlartik.handweb = YES AND vlartik.artnr = '#itemid#' NO-LOCK, FIRST itobj WHERE itobj.objekt = vlartik.artnr NO-LOCK|itobj.objekt&itobj.auflage&vlartik.praessubgrp"
+                startitem="" maximum="" pageoutput="false">
+                <cms type="methode" value="fisvlobjektdetails" parameter="{0}" defaultvalue="" startitem="" maximum=""
+                    pageoutput="false">
+                    <cms type="outputTag" value="h5" class="fowBoldDispInline"> {10}</cms>
+                </cms>
+            </cms>
+        </cms>
+    </div>
+</div>
+
+<div class="smallSpacer hidden-xs"></div>
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="pl-4">Artikel-Details</h2>
+    </div>
+</div>
+
+<div class="smallSpacer"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <cms type="query"
+            value="FOR EACH vlartik WHERE vlartik.firma = 2 AND vlartik.handweb = YES AND vlartik.artnr = '#itemid#' NO-LOCK, FIRST itobj WHERE itobj.objekt = vlartik.artnr NO-LOCK|itobj.objekt&itobj.auflage&vlartik.praessubgrp"
+            startitem="" maximum="" pageoutput="false">
+            <cms type="methode" value="fisvlobjektdetails" parameter="{0}" defaultvalue="" startitem="" maximum=""
+                pageoutput="false">
+                <div class="row">
+                    <div class="col-md-4 col-sm-5">
+                        <div class="img-uebersicht">
+                            <cms type="methode" value="fisVLBilder" parameter="{4}" defaultvalue="" startitem=""
+                                maximum="1" pageoutput="false">
+                                <cms class="img-responsive" type="outputTag" value="img"
+                                    src="/images/artikel/{0}" alt="Artikel_Bild"></cms>
+                            </cms>
+                        </div>
+
+                        <cms type="outputTag" value="form" class="einzelArt" method="post" name="WarenkorbForm"
+                            action="/shop/addItem?itemID={4}&title={10}">
+
+                            <!-- Ausgabeschlüssel ohne SelectAll -->
+
+                            <!-- 
+                            <cms type="outputTag" value="div" class="universaltext DV_Checkbox{44} clearBoth dispNone">
+                                <span><b><cms type="translate" value="Ausgabe/Kurstag wählen"></cms>:</b></span><br>
+                                <select class="selectpicker form-control input-sm" data-width="50%">
+                                    <cms type="methode" value="fisVLGetAschlussel" parameter="{4}" defaultvalue=""
+                                        startitem="" maximum="" pageoutput="true">
+                                        <cms type="outputTag" value="span">
+                                            <option class="SPAN_Checkbox" type="checkbox" value="{0}|{1}" name="ausgabe_{0}" id="ausgabe_{0}"> {1}</option>
+                                            <cms type="methode" value="fisVLGetLagerMenge" parameter="{2}&{0}" defaultvalue="" startitem="" maximum="" pageoutput="true">
+                                                <cms type="outputTag" value="span" class="hidden">{3}</cms>
+                                                <cms type="outputTag" value="span" class="edpRedWeig">{4}</cms><br>
+                                            </cms>
+                                        </cms>
+                                    </cms>
+                                </select>
+                                
+                            </cms> -->
+                            <cms type="outputTag" value="p" id="NoAusgabeStatus" class="hidden edpRedWeig">keine Ausgabe
+                                vorhanden</cms>
+
+
+                            <div id="MERK_Checkbox" class="smallSpacerNoCol art_merkmale clearBoth">
+                                <span><b>Zusatz wählen:</b></span><br>
+                                <cms type="methode" value="fisVLObjektDetails" parameter="{4}" defaultvalue=""
+                                    startitem="" maximum="" pageoutput="true">
+                                    <cms type="outputTag" value="span" class="merkmale">
+                                        <input class="MSPAN_Checkbox" type="checkbox" value="{30}" name="merkmal_{30}"
+                                            id="merkmal_{30}" data-checkbox-nr="1"> <span class="MSPAN_Text"
+                                            data-text-nr="1">{31}</span><br>
+                                        <input class="MSPAN_Checkbox" type="checkbox" value="{32}" name="merkmal_{32}"
+                                            id="merkmal_{32}" data-checkbox-nr="2"> <span class="MSPAN_Text"
+                                            data-text-nr="2">{33}</span><br>
+                                        <input class="MSPAN_Checkbox" type="checkbox" value="{34}" name="merkmal_{34}"
+                                            id="merkmal_{34}" data-checkbox-nr="3"> <span class="MSPAN_Text"
+                                            data-text-nr="3">{35}</span><br>
+                                        <input class="MSPAN_Checkbox" type="checkbox" value="{36}" name="merkmal_{36}"
+                                            id="merkmal_{36}" data-checkbox-nr="4"> <span class="MSPAN_Text"
+                                            data-text-nr="4">{37}</span><br>
+                                    </cms>
+                                </cms>
+                            </div>
+
+                            <p id="status">
+                                <cms type="outputTag" value="b" class="edpRed">{23}</cms>
+                            </p>
+
+                            <cms type="outputTag" value="div" class="hidden showWarenkorb" data-showwarenkorb="{43}">
+                            </cms>
+
+                            <cms type="outputTag" value="button"
+                                onclick="$('#WarenkorbForm').submit();SaveToSession('{38}')"
+                                class="dis-btn btn btn-primary buttonResponsWarenkorb addItem einzelBtn warenkorb-btn{43} WarenkorbButtonJS"
+                                rel="tooltip">
+                                <cms type="methode" value="fisvlcurrency" parameter="{4}" defaultvalue="" stadrtitem=""
+                                    maximum="" pageoutput="false">
+                                    <cms type="outputTag" value="span" class="weigBold">{0}</cms>
+                                    <br>In den Warenkorb
+                                </cms>
+                            </cms>
+
+                        </cms>
+
+                        <!--<cms type="outputTag" value="button" onclick="$('#WarenkorbForm').submit();SaveToSession('{38}')" 
+                            class="dis-btn btn btn-primary btnDark button-responsive addItem warenkorb-btn{43} WarenkorbButtonJS" rel="tooltip">
+                            <cms type="methode" value="fisvlcurrency" parameter="{4}" defaultvalue="" stadrtitem=""
+                                maximum="" pageoutput="false">
+                                <cms type="outputTag" value="span"><span
+                                        class="glyphicon glyphicon-shopping-cart">&nbsp;</span>{0}</cms>
+                            </cms>
+                        </cms> -->
+
+                        <cms type="methode" value="fisVLGetLagerMenge" parameter="{4}" defaultvalue="" startitem=""
+                            maximum="" pageoutput="false">
+                            <cms type="outputTag" value="span"
+                                class="lager-menge-status {3} edpRedWeigDispNone txtEinzelArt" id="lagerMengeStatus">{4}
+                            </cms>
+                        </cms>
+
+                        <!-- Grundlagenpapier - PDF Download Button -->
+                        <cms type="methode" value="fisvlGRUN" parameter="{4}" defaultvalue="" startitem="" maximum=""
+                            pageoutput="false">
+                            <cms type="outputTag" value="button" id="pdfDownloadButton"
+                                class="addItem btn btn-md btn-primary btn-block"
+                                data-link="/images/artikel/{0}">
+                                <span>Gratis als PDF herunterladen</span>
+                            </cms>
+                        </cms>
+                    </div>
+
+
+                    <div class="col-md-8 col-sm-7">
+                        <cms type="outputTag" value="h2" class="weigBold">{10}</cms>
+                        <cms type="outputTag" value="h5" class="weigNormal">{45}</cms>
+                        <hr>
+                        <cms type="outputTag" class="ulTxt" value="div">{9}</cms>
+                        <hr>
+                        <div>
+                            <span class="informationText">Autor:&nbsp;</span>
+                            <cms type="outputTag" value="span" class="informationValue">{26}</cms><br>
+                            <span class="informationText">ISBN:&nbsp;</span>
+                            <cms type="outputTag" value="span" class="informationValue">{27}</cms><br>
+                            <span class="informationText">Erschienen:&nbsp;</span>
+                            <cms type="outputTag" value="span" class="informationValue">{29}</cms><br>
+                            <span class="informationText"></span>
+                            <cms type="outputTag" value="span" class="informationValue">{42}</cms><br>
+                            <span class="informationText">Bestellnummer:&nbsp;</span>
+                            <cms type="outputTag" value="span" class="informationValue">{4}</cms>
+                        </div>
+                    </div>
+
+
+                    <hr>
+
+
+                    <!-- Ebok-Link -->
+                    <div class="col-md-4 col-sm-5"></div>
+                    <div class="col-md-8 col-sm-7">
+                        <hr>
+                        <div id="DV_Ebook" class="borderTop">
+                            <cms type="methode" value="fisVLEBOOK" parameter="{4}" defaultvalue="" startitem=""
+                                maximum="" pageoutput="false">
+                                <h4 class="smallTitle">ähnliche Produkte</h4>
+                                <cms type="outputTag" value="a" target="_blank" title="Ebook">{0}</cms><br>
+                            </cms>
+                        </div>
+                    </div>
+
+                    <!--                     <div id="DV_Ebook" class="dispNone">
+                        <cms type="methode" value="fisVLEBOOK" parameter="{4}" defaultvalue="" startitem="" maximum=""
+                            pageoutput="false">
+                            <cms type="outputTag" id="HREF_Ebook" value="a" href="{1}" target="_blank"
+                                class="universaltext btn-link" title="Ebook">{0}</cms><br>
+                        </cms>
+                    </div> -->
+
+                    <!-- Inhaltsverzeichnis -->
+                    <cms type="methode" value="fisVLBilder" parameter="{4}&ZINFO" defaultvalue="" startitem=""
+                        maximum="1" pageoutput="false">
+                        <cms type="outputTag" id="HREF_Inhalt" value="a"
+                            href="/images/artikel/{0}" target="_blank"
+                            class="universaltext centerText btn-link" title="Zusatz Informationen">
+                            <span>Zusatz Informationen</span>
+                        </cms>
+                    </cms>
+
+                    <!-- Flyer -->
+                    <cms type="methode" value="fisVLBilder" parameter="{4}&FLYER" defaultvalue="" startitem=""
+                        maximum="1" pageoutput="false">
+                        <cms type="outputTag" id="HREF_Inhalt" value="a"
+                            href="/images/artikel/{0}" target="_blank"
+                            class="universaltext btn-link" title="Flyer">
+                            <cms type="translate" value="Flyer"></cms>
+                        </cms>
+                    </cms>
+
+                </div>
+
+            </cms>
+        </cms>
+    </div>
+</div>

@@ -1,0 +1,149 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+<div class="mobSpacer"></div>
+<div class="row">
+    <div class="col-sm-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInline"><a href="/?Benutzerkonto_Abos">Benutzerkonto</a> / </h5>
+        <h5 class="dispInlineBold">Abo unterbrechen</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Abo unterbrechen</h3>
+        <p>Hier können Sie die Zustellung Ihrer Zeitschrift temporär unterbrechen. Die Unterbrechung erfolgt auf den von Ihnen gewünschten Zeitpunkt resp. den nächstmöglichen Termin. Das Abonnement wird um die Anzahl nicht bezogener Ausgaben verlängert.</p>
+    </div>
+</div>
+
+
+<cms type="shopModul" value="manageAbos">
+    <cms type="outputTag" value="div" id="AboDetail_{0}{1}" role="dialog" class="ZIndexDispNone">
+        <div class="col-12 content-box">
+            <h4>
+                <cms type="outputTag" value="span">Aboart: {3}</cms>
+            </h4>
+            <small><cms type="outputTag" value="span">Dauer: {4} - {5}</cms></small><br>
+            <small><cms type="outputTag" value="span">Fakturiert bis: {6}</cms></small><br>
+            <small><cms type="outputTag" value="span">Status: {8}<strong></strong></cms></small><br>
+        </div>
+    </cms>
+</cms>
+<br>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="umleitung col-sm-6">
+            <div id="aboUnterbrechenModal" class="zIndex" role="dialog">
+                <h4><b>Unterbrechungsdatum wählen</b></h4>
+                <form action="/shop/aboUnterbruch" method="post" data-toggle="validator" class="form-horizontal">
+                    <input type="hidden" name="successUrl" id="successUrl">
+                    <input type="hidden" name="vorgangsnr" id="vorgangsnr">
+                    <input type="hidden" name="posNr" id="posNr">
+                    <input type="hidden" name="artikel" id="artikel">
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Von:*</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control dateAboField" id="von" name="von" placeholder="Von Datum erfassen" required>
+                            <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Bis:*</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control dateAboField" id="bis" name="bis" placeholder="Bis und mit Datum erfassen" required>
+                            <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="input-sm control-label"></label>
+                        <div class="col-sm-6">
+                            <button type="submit" onclick="AboUnterbruch();" class="confirm btn btn-md float-right btn-primary">Unterbruch aktivieren</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!---- Hidden Abo-Übersicht --->
+<div class="col-md-6 col-sm-6">   
+    <!-- abo info modals (mehrere) -->
+<cms type="shopModul" value="aboInfos">
+    <cms type="outputTag" value="div" id="AboInfos_{0}{1}" role="dialog" style="z-index:20000;display:none;">
+        <div class="content shadowbox white">
+            <!-- Modal content-->
+            <table class="table table-hover">
+                <thead>
+                    <tr><h4>Aktive Umleitungen / Unterbrüche</h4></tr>
+                </thead>
+                <tbody>
+                    <tr vorgangsnr="{0}" posnr="{1}" style="display:none;"></tr>
+                    <cms type="shopModul" value="aboInfosDetails" vorgangsnr="{0}" posnr="{1}">
+                        <tr>
+                            <td><cms type="outputTag" value="span" class="aboInfosDetails">{0}</cms></td>
+                            <td><cms type="outputTag" value="button" onclick="CancelAboUmleitungUnterbruch('{2}');" val="{1}" class="btn btn-sm btn-danger showAktivUmlUntr">Löschen</cms></td>
+                        </tr>
+                    </cms>
+                </tbody>
+            </table>
+        </div><br>
+    </cms>
+</cms>   
+</div>
+
+<script>
+    function _StartPageFunction() {
+
+$('#AboInfos_' + getURLParameter('vorgangsnr') + getURLParameter('posNr')).show();
+$('#AboDetail_' + getURLParameter('vorgangsnr') + getURLParameter('posNr')).show();
+
+document.getElementById('NewUmlAdr_u').style.display = "inline";
+
+$('.AboStatus').hide();
+
+$('.showAktivUmlUntr').each(function(){
+    datum = $(this).val();
+    var arr = datum.split('.');
+    var datum_neu = new Date(arr[2], arr[1] - 1, arr[0]);
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0);
+    var vorgangsnr =  $(this).closest("table").find("tbody>tr").first().attr("vorgangsnr");
+    var posnr =  $(this).closest("table").find("tbody>tr").first().attr("posnr");
+    
+    //console.log(datum_neu >= todayDate);
+    if (datum_neu >= today){
+        $(this).show();
+        $('#AboStatus'+vorgangsnr+posnr).show();
+        
+    }else {
+        $(this).parent().hide();
+        $(this).parent().prev().hide();
+        
+    }
+    
+});
+
+$('.showInaktivUmlUntr').each(function(){
+    datum = $(this).val();
+    var arr = datum.split('.');
+    var datum_neu = new Date(arr[2], arr[1] - 1, arr[0]);
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0);
+    
+    if (datum_neu >= today){
+        $(this).parent().hide();
+        $(this).parent().prev().hide();
+        
+    }else {
+        $(this).show();
+        
+    }
+    
+}); 
+    }
+</script>

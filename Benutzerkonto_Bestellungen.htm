@@ -1,0 +1,85 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInline"><a href="/?Benutzerkonto_Daten">Benutzerkonto</a> / </h5>
+        <h5 class="dispInlineBold">Bestellungen</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="text-center">Benutzerkonto</h2>
+    </div>
+</div>
+
+<div class="col-xs-12 mb-5">
+    <div class="text-center">
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Daten">
+            <h4>Daten</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Abos">
+            <h4>Abos</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
+            <h4><u>Bestellungen</u></h4>
+        </a>
+    </div>
+</div>
+
+<h3>Meine Bestellungen</h3>
+<div class="col-xs-12 order-tab-div">
+    <div class="row mob-small p-2 mb-5">
+        <div class="table-responsive">
+            <table class="table table-hover" id="order-table">
+                <thead>
+                    <tr>
+                        <th>Bestellnummer</th>
+                        <th>Bestelldatum</th>
+                        <th>Betrag</th>
+                        <th>Status</th>
+                        <th class="order-pdf">Status / PDF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <cms type="shopModul" value="manageOrders">
+                        <tr>
+                            <td>
+                                <!-- <small><cms type="outputTag" value="span">{0} - {1}</cms></small> -->
+                                <small><cms type="outputTag" value="span">{1}</cms></small>
+                            </td>
+                            <td>
+                                <small><cms type="outputTag" value="span">{2}</cms></small>
+                            </td>
+                            <td>
+                                <small><cms type="outputTag" value="span">{3} {4}</cms></small>
+                            </td>
+                            <td>
+
+                                <!--                                 <form action="/shop/createOrder" method="post">
+                                    <button type="button" class="col-12 btn btn-md btn-primary pull-right" onclick="this.form.submit();">
+                                        <cms type="shopModul" value="offerteTotal">
+                                          <strong>Total CHF <cms type="outputTag" value="span">{2}</cms></strong>
+                                        </cms>
+                                      </button>
+                                </form> -->
+
+
+                                <small>
+                                    <cms type="outputTag" value="a" class="btn-link" title="Jetzt offener Betrag mit Kreditkarte bezahlen">{8}</cms></small>
+
+                            </td>
+                            <td>
+                                <small>
+                                    <cms type="outputTag" value="a" class="btn-link" href="/shop/getFile?fileType=pdf&fileName={7}&adressnr={6}&vorgangsnr={0}&fakturanr={1}" target="_blank">PDF herunterladen&nbsp;<i class="fa fa-file-pdf-o pdf-font"></i></cms>
+                                </small>
+                            </td>
+                        </tr>
+                    </cms>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

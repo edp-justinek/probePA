@@ -1,0 +1,94 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="col-md-12">
+    <h5 style="display: inline;"><a href="/?home">Hauptseite</a> / </h5>
+    <cms type="query"
+        value="FOR EACH sytext WHERE sytext.firma = 2 AND sytext.arbgeb = 'VLOB' AND sytext.sprache = 'D' AND sytext.textkey1 = '#praessub#' AND sytext.textkey2 = 'TITEL' NO-LOCK|sytext.textfeld&sytext.textkey1"
+        startitem="" maximum="" pageoutput="false">
+        <cms type="outputTag" value="h5" style="font-weight: bold; display: inline;">{0}</cms>
+    </cms>
+</div>
+
+<div class="smallSpacer hidden-xs">&nbsp;</div>
+
+<!-- START -->
+<div class="col-md-12">
+    <cms type="query"
+        value="FOR EACH sytext WHERE sytext.firma = 2 AND sytext.arbgeb = 'VLOB' AND sytext.sprache = 'D' AND sytext.textkey1 = '#praessub#' AND sytext.textkey2 = 'TITEL' NO-LOCK|sytext.textfeld&sytext.textkey1"
+        startitem="" maximum="" pageoutput="false">
+        <cms type="outputTag" value="h2">{0}</cms>
+
+    </cms>
+    <cms type="query"
+        value="FOR EACH sytext WHERE sytext.firma = 2 AND sytext.arbgeb = 'VLOB' AND sytext.sprache = 'D' AND sytext.textkey1 = '#praessub#' AND sytext.textkey2 = 'TEXT' NO-LOCK|sytext.textfeld"
+        startitem="" maximum="" pageoutput="false">
+        <cms type="outputTag" value="p">{0}</cms>
+    </cms>
+
+</div>
+
+<h4 class="artTitel">Artikel wählen:</h4>
+<div class="d-flex flex-wrap">
+
+    <cms type="query" class="edpwhite"
+        value="FOR EACH vlartik WHERE vlartik.firma = 2 AND vlartik.handweb = YES AND vlartik.praesgrp = '#praesgrp#' and vlartik.praessubgrp = '#praessub#' NO-LOCK, FIRST itobj WHERE itobj.objekt = vlartik.artnr NO-LOCK BY itobj.reihenfolge.|itobj.objekt&itobj.auflage"
+        startitem="" maximum="" pageoutput="false">
+        <div class="demo-artikel m-4">
+            <cms type="methode" value="fisvlobjektdetails" parameter="{0}" defaultvalue="" startitem="" maximum=""
+                pageoutput="false">
+                <cms type="outputTag" value="form" method="post" name="WarenkorbForm_{4}" id="WarenkorbForm_{4}"
+                    action="/shop/addItem?itemID={4}&title={6}">
+
+                    <!--Titel-->
+                    <cms type="outputTag" value="h3" class="artikel-titel text-center">{10}</cms>
+
+                    <!--Bild-->
+                    <cms type="outputTag" value="a" class="btn-link"
+                        href="/?Artikel_Detail_Einzelartikel?itemid={4}">
+                        <cms type="methode" value="fisVLBilder" parameter="{4}" defaultvalue="" startitem="" maximum="1"
+                            pageoutput="false">
+                            <div class="container_img">
+                                <cms class="img-responsive img-to-add" type="outputTag" value="img" alt="item"
+                                    src="https://demoshop.faros.ch/images/artikel/{0}"></cms>
+                                <div class="overlay">
+                                    <div class="text_img">Mehr Infos</div>
+                                </div>
+                            </div>
+                        </cms>
+                    </cms>
+
+
+                    <cms type="outputTag" value="div" class="DV_Checkbox{44}">
+                        <select class="selectpicker form-control input-sm"></select>
+                    </cms>
+
+                
+
+                    <div class="text-center w-100">
+                        <!--Warenkorb-Button-->
+                        <br>
+
+                        <cms type="outputTag" value="button"
+                            onclick="$('#WarenkorbForm').submit();SaveToSession('{38}')" class="dis-btn btn btn-primary btnDark button-responsive addItem warenkorb-btn{43} WarenkorbButtonJS" rel="tooltip">
+                            <cms type="methode" value="fisvlcurrency" parameter="{4}" defaultvalue="" stadrtitem=""
+                                maximum="" pageoutput="false">
+                                <cms type="outputTag" value="span"><span
+                                        class="glyphicon glyphicon-shopping-cart">&nbsp;</span>{0}</cms>
+                            </cms>
+                        </cms>
+                        <br><br>
+                        <!--Text-->
+                        <cms type="outputTag" value="p">{45}</cms>
+
+                        <cms type="outputTag" value="div" class="hidden showWarenkorb text-center"
+                            data-showwarenkorb="{43}"></cms>
+
+
+                    
+                    </div>
+                </cms>
+            </cms>
+        </div>
+    </cms>
+
+</div>

@@ -1,0 +1,99 @@
+#############################################################
+#  Diese Klassen muessen angepasst und hinzugefuegt werden  #
+#############################################################
+
+.abo-login-shopping-box {
+	height: 100vh; 
+	width: 307px; 
+	background-color: white; 
+	overflow: auto; 
+	margin-right: -3px;
+}
+.abo-login-shopping-box-top {
+	height: 65px;
+	width: 100%; 
+}
+.content-box {
+	background-color: grey;
+}
+.spacer {
+	padding-top: 70px;
+}
+.coll-content {
+	padding: 0 18px;
+	display: none;
+	overflow: hidden;
+	background-color: white;
+}
+.collaps_help {
+	margin: 10px 0px;
+}
+.collaps_help:hover {
+	color: var(--edp-color-red);
+}
+
+
+/* START: Style aus der Benutzerkonto_Abo_kuenden datei */
+
+.funkyradio {
+	color: var(--edp-color-red);
+	background-color: var(--edp-color-white);
+}
+.funkyradio div {
+	clear: both;
+	overflow: hidden;
+}
+.funkyradio label {
+	width: 100%;
+	border-radius: 3px;
+	border: 1px solid var(--edp-color-darkgray);
+	font-weight: normal;
+}
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+	display: none;
+}
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+	position: relative;
+	line-height: 2.5em;
+	text-indent: 3.25em;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 2.5em;
+	background: var(--edp-color-darkgray);
+	border-radius: 3px 0 0 3px;
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+	color: var(--edp-color-darkgray);
+}
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+	content: '\2714';
+	text-indent: .9em;
+	color: var(--edp-color-mgray);
+}
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+	color: var(--edp-color-darkgray);
+}
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+	content: '\2714';
+	text-indent: .9em;
+	color: var(--edp-color-black);
+	background-color: var(--edp-color-light-gray);
+}

@@ -1,0 +1,138 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+<div class="mobSpacer"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Abo künden</h3>
+        <p>Wir bedauern sehr, dass Sie Ihr Abo per Ende der Laufzeit künden möchten. Bitte geben Sie uns den Grund für Ihre Kündigung an.</p>
+    </div>
+</div>
+
+
+<cms type="shopModul" value="manageAbos">
+    <cms type="outputTag" value="div" id="AboDetail_{0}{1}" role="dialog" class="ZIndexDispNone">
+        <div class="col-12 content-box">
+            <h4>
+                <cms type="outputTag" value="span">Aboart: {3}</cms>
+            </h4>
+            <small><cms type="outputTag" value="span">Dauer: {4} - {5}</cms></small><br>
+            <small><cms type="outputTag" value="span">Fakturiert bis: {6}</cms></small><br>
+            <small><cms type="outputTag" value="span">Status: {8}<strong></strong></cms></small><br>
+        </div>
+    </cms>
+</cms>
+
+<input type="hidden" name="Grund" id="Grund" value="true">
+<div class="mt-4">
+    <cms type="query" value="FOR EACH CODE WHERE CODE.code-art = 'ABOMERK2' AND code.sprache = 'D' AND code.firma = 0 AND code.stat = 0 NO-LOCK. CODE.code-wertCODE.code-text0" startitem="" maximum="" pageoutput="false"></cms>
+
+    <div class="col-md-6 col-sm-12 p-1">
+        <div class="funkyradio">
+            <div class="funkyradio-primary">
+                <input type="radio" name="beenden" id="beenden1" class="beenden" value="800">
+                <label for="beenden1">Ich habe kein Interesse mehr</label>
+            </div>
+            <div class="funkyradio-primary">
+                <input type="radio" name="beenden" id="beenden2" class="beenden" value="810">
+                <label for="beenden2">Ich mache eine Lesepause</label>
+            </div>
+            <div class="funkyradio-primary">
+                <input type="radio" name="beenden" id="beenden3" class="beenden" value="820">
+                <label for="beenden3">Das Abonnement ist zu teuer</label>
+            </div>
+            <div class="funkyradio-primary">
+                <input type="radio" name="beenden" id="beenden4" class="beenden" value="830">
+                <label for="beenden4">Ich habe keine Zeit</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12 p-1">
+
+        <div class="funkyradio">
+            <div>
+                <div class="collapsible pointer">
+                    <label class="kuenden">Ich wechsle den Wohnort&nbsp;<span class="caret"></span></label>
+                </div>
+                <div class="coll-content">
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden5" class="beenden" value="840">
+                        <label for="beenden5" class="kue_label">...im Inland</label>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden6" class="beenden" value="850">
+                        <label for="beenden6" class="kue_label">...ins Ausland</label>
+                    </div>
+                </div>
+
+                <div class="collapsible pointer">
+                    <label class="kuenden">Ich lese eine andere Zeitung&nbsp;<span class="caret"></span></label>
+                </div>
+                <div class="coll-content">
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden7" class="beenden" value="860">
+                        <label for="beenden7" class="kue_label">...die Schaffhauser Nachrichten</label>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden8" class="beenden" value="870">
+                        <label for="beenden8" class="kue_label">...das Zofinger Tagblatt</label>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden9" class="beenden" value="880">
+                        <label for="beenden9" class="kue_label">...die Surseer Woche</label>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden10" class="beenden" value="890">
+                        <label for="beenden10" class="kue_label">...den Wilisauerbote</label>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden11" class="beenden" value="900">
+                        <label for="beenden11" class="kue_label">...die Freiburger Nachrichten</label>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden12" class="beenden" value="910">
+                        <label for="beenden12" class="kue_label">...das Migros Magazin</label>
+                    </div>
+                    <div class="funkyradio-primary">
+                        <input type="radio" name="beenden" id="beenden13" class="beenden" value="920">
+                        <label for="beenden13" class="kue_label">...Anderer Titel</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="collapsible pointer">
+                <label class="kuenden">Ich kann die Zeitung gratis lesen&nbsp;<span class="caret"></span></label>
+            </div>
+            <div class="coll-content">
+                <div class="funkyradio-primary">
+                    <input type="radio" name="beenden" id="beenden14" class="beenden" value="930">
+                    <label for="beenden14" class="kue_label">...am Arbeitsplatz</label>
+                </div>
+                <div class="funkyradio-primary">
+                    <input type="radio" name="beenden" id="beenden15" class="beenden" value="940">
+                    <label for="beenden15" class="kue_label">...im Restaurant</label>
+                </div>
+                <div class="funkyradio-primary">
+                    <input type="radio" name="beenden" id="beenden16" class="beenden" value="950">
+                    <label for="beenden16" class="kue_label">...beim Nachbarn</label>
+                </div>
+            </div>
+            <div class="funkyradio-primary">
+                <input type="radio" name="beenden" id="beenden17" class="beenden" value="990">
+                <label for="beenden17" id="DiversBtn">Anderer Grund</label>
+            </div>
+
+        </div>
+
+
+
+
+        <button class="btn btn-md btn-primary pull-right btn-clr" id="AboBeendenBtn" onclick="AboBeenden()" disabled="">Kündigung bestätigen</button>
+    </div>
+</div>
+<div class="float-right">
+    <a href="/?Benutzerkonto_Daten">Zurück</a>
+</div>
+
+</div>

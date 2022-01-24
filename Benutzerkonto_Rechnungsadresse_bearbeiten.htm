@@ -1,0 +1,117 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInline"><a href="/?Benutzerkonto_Daten">Benutzerkonto</a> / </h5>
+        <h5 class="dispInlineBold">Rechnungsadresse bearbeiten</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Rechnungsadresse bearbeiten</h3>
+        <br>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="content-box">
+
+            <div class="row">
+
+                <div class="col-md-10">
+
+                    <form action="/shop/saveEditAdresse" id="hauptadr" method="post" data-toggle="validator" class="form-horizontal">
+                        <input type="hidden" name="successUrl" value="/?Benutzerkonto_Daten">
+                        <input type="hidden" name="adressEdit" id="adressEdit" value="true">
+                        <input type="hidden" name="konto_adressnr" id="konto_adressnr" value="#AdressNr#">
+
+                        <div class="form-group row">
+                            <label for="konto_Anrede" class="col-sm-2 col-form-label">Anrede:</label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline" for="konto_AnredeHerr">
+                                    <input type="radio" name="konto_Anrede" id="konto_AnredeHerr" value="01" required>Herr
+                                </label>
+                                <label class="radio-inline" for="konto_AnredeFrau">
+                                    <input type="radio" name="konto_Anrede" id="konto_AnredeFrau" value="02">Frau
+                                </label>
+                                <label class="radio-inline hidden" for="konto_Anrede">
+                                    <input type="radio" name="konto_Anrede" id="konto_Anrede" value="00">Firma
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="konto_Name" class="col-sm-2 col-form-label">Name*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control checkme" id="konto_Name" name="konto_Name" placeholder="Nachname erfassen" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="konto_Vorname" class="col-sm-2 col-form-label">Vorname*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control checkme" id="konto_Vorname" name="konto_Vorname" placeholder="Vorname erfassen" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="konto_Strasse" class="col-sm-2 col-form-label">Strasse / Nr.*:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control checkme" id="konto_Strasse" name="konto_Strasse" placeholder="Strasse eingeben" required>
+                            </div>
+                            <div class="miniSpacer visible-xs"></div>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control checkme" id="konto_Hausnummer" name="konto_Hausnummer" placeholder="Nr." required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="konto_Ort" class="col-sm-2 col-form-label">PLZ / Ort*:</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control checkme" id="konto_PLZ" name="konto_PLZ" placeholder="PLZ erfassen" required>
+                            </div>
+                            <div class="miniSpacer visible-xs"></div>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control checkme" id="konto_Ort" name="konto_Ort" placeholder="Ort erfassen" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="konto_Postfach" class="col-sm-2 col-form-label">Postfach:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="konto_Postfach" name="konto_Postfach" placeholder="Postfach eingeben">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Land" class="col-sm-2 col-form-label">Land*:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="Land" name="Land">
+                                    <option value="CH">Schweiz</option>
+                                    <option value="DE">Deutschland</option>
+                                    <option value="AT">Österreich</option>
+                                    <option value="IT">Italien</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-7"></div>
+                            <div class="col-sm-4 pull-right">
+                                <button type="submit" id="AdrSaveBtn" class="btn btn-md btn-primary btn-block btn-clr">Adresse speichern</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-11">
+                                <a class="float-right" href="javascript:window.history.back();">Zurück</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

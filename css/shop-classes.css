@@ -1,0 +1,340 @@
+/*     Algemein       */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+body {
+    padding: 0 !important;
+}
+
+.content-box {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.cancelAboBox {
+    border: 1px solid darkgray;
+    background: lightgray;
+}
+
+.vh100 {
+    min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+    .bestellung {
+        border-right: solid white 15px;
+    }
+}
+
+.img-warenkorb {
+    width: 100px;
+    height: 100px;
+}
+
+.pdf-font {
+    font-size: 16px;
+}
+
+.overflowAdresse {
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    padding-right: 20px;
+}
+
+.dispNone {
+    display: none;
+}
+
+.weigBold {
+    font-weight: bold;
+}
+
+.dispInline {
+    display: inline;
+}
+
+.dispInlineBold {
+    display: inline;
+    font-weight: bold
+}
+
+.form-horizontal {
+    padding-left: 30px;
+}
+
+.ZIndexDispNone {
+    z-index: 20000;
+    display: none;
+}
+
+.zIndex {
+    z-index: 20000;
+}
+
+.img-responsive {
+    width: 260px !important;
+    height: 240px !important;
+    margin: 0 auto !important;
+}
+
+.txtScroll {
+    margin-bottom: 80px;
+}
+
+.screen-disable {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 77777;
+    background-color: rgba(0, 0, 0, 0.300);
+    position: fixed;
+    display: none
+}
+
+.ulTxt ul {
+    margin-left: 20px;
+}
+
+.einzelArt {
+    text-align: center;
+}
+
+.txtEinzelArt {
+    margin: 10px 0px 5px 76px;
+}
+
+.einzelBtn {
+    width: 63%;
+}
+
+.form-control-feedback {
+    right: 20px !important;
+}
+
+.thank_div {
+    padding: 15px 0px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.show {
+    display: flex !important;
+}
+
+.show_Benutzer {
+    display: contents;
+}
+
+.alert-danger {
+    color: white !important;
+    opacity: 0.8;
+    background-color: rgb(218, 9, 9) !important;
+}
+
+.alert-info {
+    color: white !important;
+    opacity: 0.8;
+    background-color: green !important;
+}
+
+.scroll-shop {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 450px;
+}
+
+
+/* Progressbar */
+
+.multiPogressbar {
+    font-size: 12px;
+}
+
+.progressbarMain {
+    margin-left: 25%;
+    margin-bottom: 20px;
+}
+
+.progressbar li {
+    list-style-type: none;
+    width: 17%;
+    float: left;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7d7d7d;
+}
+
+.progressbar li:before {
+    width: 25px;
+    height: 25px;
+    content: counter(none);
+    line-height: 10px;
+    border: 2px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    background-color: #7d7d7d;
+    z-index: 500;
+}
+
+.progressbar li:after {
+    width: 93%;
+    height: 3px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 10px;
+    left: -50%;
+}
+
+.progressbar li:first-child:after {
+    content: none;
+}
+
+.progressbar li.active {
+    color: black;
+}
+
+.progressbar li.active:before {
+    border-color: black;
+    background-color: black;
+}
+
+.progressbar li.active+li:after {
+    background-color: black;
+}
+
+
+/*   Benutzerkonto   */
+
+.kuenden {
+    padding: 10px;
+}
+
+
+/* DropDown */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/*   carousel    */
+
+@media (min-width: 840px) {
+    .carousel-item {
+        display: block;
+        float: none;
+        margin: 0;
+        width: auto;
+        padding-bottom: 50px;
+        flex: auto
+    }
+}
+
+
+/*ANPASSEN!!*/
+
+
+/*          abo-login-shopping-box          */
+
+.abo-login-shopping-box {
+    height: 100vh;
+    width: 307px;
+    background-color: white;
+    overflow: auto;
+    margin-right: -3px;
+    margin-top: -1px;
+}
+
+.abo-login-shopping-box-top {
+    height: 65px;
+    width: 100%;
+}
+
+.datepicker {
+    padding: 10px !important;
+}
+
+td.disabled {
+    background-color: white;
+    color: #cccccc !important;
+}
+
+td.old,
+td.new {
+    color: rgb(155, 155, 155) !important;
+}
+
+td.active {
+    background-color: rgb(221, 221, 221) !important;
+    background-image: none !important;
+}
+
+th.datepicker-switch {
+    text-align: center;
+}
+
+th.next {
+    text-align: right;
+}
+
+td.day {
+    font-size: 19px;
+    color: #000000;
+    padding: 5px 10px !important;
+}
+
+span.month {
+    font-size: 19px;
+    color: #000000;
+    padding: 5px 5px !important;
+}
+
+span.year {
+    font-size: 19px;
+    color: #000000;
+    padding: 5px 5px !important;
+}

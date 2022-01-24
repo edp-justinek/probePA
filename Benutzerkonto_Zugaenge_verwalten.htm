@@ -1,0 +1,80 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInline"><a href="/?Benutzerkonto_Daten">Benutzerkonto</a> / </h5>
+        <h5 class="dispInlineBold">Zugänge</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2 class="text-center">Zugänge verwalten</h2>
+    </div>
+</div>
+
+
+<div class="col-xs-12 mb-5">
+    <div class="text-center">
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Daten">
+            <h4>Daten</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Abos">
+            <h4>Abos</u>
+            </h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
+            <h4>Bestellungen</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Zugaenge">
+            <h4><u>Zugänge</u></h4>
+        </a>
+    </div>
+</div>
+
+<h3>Zugänge</h3>
+
+<table id="manageLogins" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Administrator</th>
+            <th>Services</th>
+            <th>Funktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <cms type="shopModul" value="manageFirmenlogins">
+            <tr>
+                <td>
+                    <cms type="outputTag" value="span">{1}</cms>
+                </td>
+                <td>
+                    <cms type="outputTag" value="span">{2}</cms>
+                </td>
+                <td>
+                    <cms type="outputTag" value="span">
+
+                        <form action="/shop/changeLoginService" method="post">
+
+                            <cms type="outputTag" value="input" name="service" style="display:none;" val="Admin"></cms>
+                            <cms type="outputTag" value="input" name="zugrgrup" style="display:none;" val=""></cms>
+                            <cms type="outputTag" value="input" name="benutzerID" style="display:none;" val="{0}"></cms>
+
+                            <cms type="outputTag" value="span">
+                                <input type="checkbox" onclick="$(this).closest('form').submit();" name="setSerivce" value="true" {3}/="">
+                            </cms>
+                        </form>
+
+
+                    </cms>
+                </td>
+                <td>
+                    <!-- services -->
+                    <cms type="shopModul" value="getServices" benutzerid="{0}">
+                        <form action="/shop/changeLoginService" method="post">
+
+                            <cms type="outputTag" value="input" name="service" style="display:none;" val="{3}"></cms>

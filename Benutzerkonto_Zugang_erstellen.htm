@@ -1,0 +1,167 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInline"><a href="/?Benutzerkonto_Daten">Benutzerkonto</a> / </h5>
+        <h5 class="dispInlineBold">Zugänge</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Zugäne verwalten</h2>
+    </div>
+</div>
+
+
+<div class="col-xs-12 mb-5">
+    <div class="text-center">
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Daten">
+            <h4>Daten</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Abos">
+            <h4>Abos</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
+            <h4>Bestellungen</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Zugaenge">
+            <h4><u>Zugänge</u></h4>
+        </a>
+    </div>
+</div>
+
+<h3>Informationen für neue Zugänge</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group row">
+            <label for="old_pw" class="col-md-4 control-label">
+                Zugriffscode:</label>
+            <div class="col-md-6">
+                <cms type="shopModul" value="getZugriffscode">
+                    <cms type="outputTag" value="span">{0}</cms>
+                </cms>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group row">
+            <label for="new_pw" class="col-md-4 control-label">
+                    Adressnummer:
+                </label>
+            <div class="col-md-6">
+                <cms type="shopModul" value="getAdressnummer">
+                    <cms type="outputTag" value="span">{0}</cms>
+                </cms>
+            </div>
+        </div>
+        <form action="/shop/newZugriffscode" method="post">
+            <cms type="shopModul" value="getZugriffscode">
+                <cms type="outputTag" value="input" name="codeAlt" style="display:none;" val="{0}"></cms>
+            </cms>
+            <button type="submit" style="width:200px;" onclick="return confirm('Wirklich neuen Code generieren?');" class="btn btn-primary btn-block">
+                    Neuen Code generieren</button>
+        </form>
+    </div>
+</div>
+
+<div class="spacer">
+</div>
+<hr>
+<h3>Neuer Zugang</h3>
+
+<div class="row">
+    <form action="/shop/saveNewFirmenlogin" method="post" data-toggle="validator" role="form" class="form-horizontal">
+        <div class="form-group row">
+            <label for="konto_Anrede" class="col-md-4 control-label">Service:</label>
+            <div class="col-md-6">
+                <select class="form-control" id="konto_Service" name="konto_Service" required="">
+                            <cms type="shopModul" value="getFreeServices">
+                                <cms type="outputTag" value="option" val="{0}|{2}">{1}</cms>
+                            </cms>
+                        </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="konto_Anrede" class="col-md-4 control-label">Sprache:</label>
+            <div class="col-md-6">
+                <select class="form-control" id="konto_Sprache" name="konto_Sprache" placeholder="Nachname erfassen" required="">
+                            <option value="de">Deutsch
+                                <option value="fr">Französisch
+                                    <option value="it">Italienisch
+                                    </option>
+                                </option>
+                            </option>
+                        </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="konto_Anrede" class="col-md-4 control-label">Anrede:</label>
+            <div class="col-md-6">
+                <select class="form-control" id="konto_Anrede" name="konto_Anrede" placeholder="Nachname erfassen" required="">
+                            <option value="00">
+                                <option value="01">Herr
+                                    <option value="02">Frau
+                                    </option>
+                                </option>
+                            </option>
+                        </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="konto_Name" class="col-md-4 control-label">
+                        Name*:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="konto_Name" name="konto_Name" placeholder="Nachname erfassen" required="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="konto_Vorname" class="col-md-4 control-label">
+                            Vorname*:</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="konto_Vorname" name="konto_Vorname" placeholder="Vorname erfassen" required="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="konto_EmailAdr" class="col-md-4 control-label">
+                                E-Mail-Adresse*:</label>
+            <div class="col-md-6">
+                <input type="email" class="form-control" id="konto_EmailAdr" name="konto_EmailAdr" placeholder="E-Mail-Adresse erfassen" data-error="ungültige E-Mail-Adresse" required="">
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group row">
+                <label for="passwort" class="col-md-4 control-label">Passwort*:</label>
+                <div class="col-md-3">
+                    <input type="password" data-minlength="10" class="form-control" id="passwort" name="passwort" placeholder="Passwort" required="">
+                    <span class="help-block">Minimal 10 Zeichen</span>
+                </div>
+                <div class="col-md-3">
+                    <input type="password" class="form-control" id="passwort_hidden" name="passwort_hidden" data-match="#passwort" data-match-error="Passwörter sind nicht identisch" placeholder="Passwort wiederholen" required="">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="konto_Vorname" class="col-md-4 control-label">
+                                    Administrator:</label>
+            <div class="col-md-6">
+                <input type="checkbox" class="" value="true" id="konto_Administrator" name="konto_Administrator" placeholder="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-md btn-primary btn-block">Firmenzugang erstellen</button>
+                </div>
+            </div>
+        </div>
+    </form>
