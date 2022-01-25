@@ -1,0 +1,149 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<!--
+<div class="hidden-xs spacer">
+    <div class="progressbarMain row">
+        <ul class="progressbar col-sm-10 mx-auto d-flex flex-row justify-content-center">
+            <li class="active active-line"><a class="multiPogressbar" href="">1. Registreiren / Anmelden</a></li>
+            <li class="active active-line">2. Adresse</li>
+            <li class="active-line">3. Offerte</li>
+            <li class="">4. Bezahlung</li>
+        </ul>
+    </div>
+</div>
+-->
+
+<div class="col-sm-12 col-md-6 content-box bestellung">
+    <div id="warenkorbOfferte">
+        <h3 class="pb-3">Ihre Bestellung</h3>
+        <cms type="shopModul" value="warenkorbArtikelListe">
+            <div class="pr-2 pb-3 d-flex">
+
+                <div class="pr-4">
+                    <p><b><cms type="outputTag" value="span">{2}x {1}</cms></b></p>
+                    <p>CHF
+                        <cms type="outputTag" value="span">{3}</cms>
+                    </p>
+                    <cms type="outputTag" value="a" class="pointer" href="/shop/removeItem?itemID={0}&showCard=true" onclick="javascript:return confirm('Artikel wirklich entfernen?')" title="Artikel entfernen"><b>Entfernen</b></cms>
+                </div>
+            </div>
+        </cms>
+
+        <!-- Modal content-->
+        <div class="dispNone DV_WarenkorbEmpty">
+            <div class="alert alert-danger">
+                <h4><span class="glyphicon glyphicon-shopping-cart"></span> Keine Artikel im Warenkorb.</h4>
+            </div>
+        </div>
+        <div class="text-center">
+            <cms type="shopModul" value="warenkorbTotalBetrag">
+                <cms type="outputTag" value="h4">BRUTTOPREIS: CHF {1}</cms>
+            </cms>
+        </div>
+    </div>
+</div>
+
+<!--- START: Registration Offerte -->
+<div class="col-sm-12 col-md-6 content-box">
+    <h3>Persönliche Angaben</h3>
+    <p>Wir haben folgende Angaben von Ihnen gespeichert.</p>
+    <br>
+
+    <form action="/shop/saveEditAdresse" method="post" data-toggle="validator" class="form-horizontal">
+        <input type="hidden" name="successUrl" value="/?Offerte_Angemeldet">
+
+
+        <input type="hidden" name="adressEdit" id="adressEdit" value="true">
+        <input type="hidden" name="konto_adressnr" id="konto_adressnr" value="#AdressNr#">
+
+        <div class="form-group row">
+            <label for="konto_Anrede" class="col-sm-3 col-form-label">Anrede:</label>
+            <div class="col-sm-9">
+                <label class="radio-inline" for="konto_AnredeHerr">
+          <input type="radio" name="konto_Anrede" id="konto_AnredeHerr" value="01" required>Herr
+        </label>
+                <label class="radio-inline" for="konto_AnredeFrau">
+          <input type="radio" name="konto_Anrede" id="konto_AnredeFrau" value="02">Frau
+        </label>
+                <label class="radio-inline hidden" for="konto_Anrede">
+          <input type="radio" name="konto_Anrede" id="konto_Anrede" value="00">Firma
+        </label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="konto_Name" class="col-sm-3 col-form-label">Name*:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control checkme" id="konto_Name" name="konto_Name" placeholder="Nachname erfassen" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="konto_Vorname" class="col-sm-3 col-form-label">Vorname*:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control checkme" id="konto_Vorname" name="konto_Vorname" placeholder="Vorname erfassen" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="konto_Strasse" class="col-sm-3 col-form-label">Strasse / Nr.*:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control checkme" id="konto_Strasse" name="konto_Strasse" placeholder="Strasse eingeben" required>
+            </div>
+            <div class="offertSpacer visible-xs"></div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control checkme" id="konto_Hausnummer" name="konto_Hausnummer" placeholder="Nr." required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="konto_Ort" class="col-sm-3 col-form-label">PLZ / Ort*:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control checkme" id="konto_PLZ" name="konto_PLZ" placeholder="PLZ erfassen" required>
+            </div>
+            <div class="offertSpacer visible-xs"></div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control checkme" id="konto_Ort" name="konto_Ort" placeholder="Ort erfassen" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="konto_Postfach" class="col-sm-3 col-form-label">Postfach:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="konto_Postfach" name="konto_Postfach" placeholder="Postfach eingeben">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="Land" class="col-sm-3 col-form-label">Land*:</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="Land" name="Land">
+          <option value="CH">Schweiz</option>
+          <option value="DE">Deutschland</option>
+          <option value="AT">Österreich</option>
+          <option value="IT">Italien</option>
+        </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="konto_telpriv" class="col-sm-3 col-form-label">Telefon:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="konto_telpriv" name="konto_telpriv" placeholder="Telefonnummer eingeben">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-6 pull-right">
+                <button type="submit" class="btn btn-md btn-primary btn-block btn-clr">Adresse speichern</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-11">
+                <a class="float-right" href="javascript:window.history.back();">Zurück</a>
+            </div>
+        </div>
+
+    </form>
+</div>

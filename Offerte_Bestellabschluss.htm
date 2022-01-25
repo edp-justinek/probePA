@@ -1,0 +1,206 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<!--
+<div class="hidden-xs spacer">
+    <div class="progressbarMain row">
+        <ul class="progressbar col-sm-10 mx-auto d-flex flex-row justify-content-center">
+            <li class="active active-line"><a class="multiPogressbar" href="">1. Registreiren / Anmelden</a></li>
+            <li class="active active-line"><a class="multiPogressbar" href="javascript:window.history.back()">2. Adresse</a></li>
+            <li class="active active-line">3. Offerte</li>
+            <li class="">4. Bezahlung</li>
+        </ul>
+    </div>
+</div>
+-->
+
+<!--Gutscheincode-->
+<form action="/shop/setGutschein" method="post">
+    <div class="col-sm-12 col-md-6 bestellung pb-5">
+
+        <h3>Gutscheincode</h3>
+        <br>
+        <div class="form-group row">
+            <div class="col-12">
+                <input class="form-control-FN w-100" type="text" id="gscode" name="gscode" placeholder="Gutscheincode eingeben">
+            </div>
+        </div>
+        <div class="pb-5 pt-5">
+            <button type="button" class="btn btn-primary btn-m col-12 pull-right" onclick="this.form.submit();">Gutscheincode einlösen</button>
+        </div>
+    </div>
+</form>
+
+<form action="/shop/createOrder" method="post">
+    <!--Bestellung-->
+    <div class="col-sm-12 col-md-6 bestellung mb-5">
+        <div>
+            <h3 class="pb-3">Ihre Bestellung</h3>
+            <cms type="shopModul" value="warenkorbArtikelListe">
+                <div class="pr-2 pb-3 d-flex">
+                    <div class="pr-4">
+                        <cms type="methode" value="fisVLBilder" parameter="{0}" defaultvalue="" startitem="" maximum="1" pageoutput="false">
+                            <cms class="img-warenkorb" type="outputTag" value="img" src="https://demoshop.faros.ch/images/artikel/{0}" onerror="this.onerror=null;this.src='https://demoshop.faros.ch/httpfiles/shntestabotopic/images/artikel/no-image-available.png';">
+                            </cms>
+                        </cms>
+                    </div>
+                    <div class="pr-4">
+                        <p><b>
+                <cms type="outputTag" value="span">{2}x {1}</cms>
+              </b></p>
+                        <p>
+                            <cms type="outputTag" value="span">{3}</cms> CHF
+                        </p>
+                        <cms value="span" type="outputTag" id="{0}"></cms>
+                        <cms type="outputTag" value="a" class="pointer" href="/shop/removeItem?itemID={0}&showCard=true" onclick="javascript:return confirm('Artikel wirklich entfernen?')" title="Artikel entfernen">
+                            <b>Entfernen</b>
+                        </cms>
+                    </div>
+                </div>
+            </cms>
+            <!-- Modal content-->
+            <div class="DV_WarenkorbEmpty dispNone">
+                <div class="alert alert-danger">
+                    <h4><span class="glyphicon glyphicon-shopping-cart"></span> Keine Artikel im Warenkorb.</h4>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <cms type="shopModul" value="offerteArtikel">
+            <!-- Check Zahlungsoption -->
+            <cms type="query" value="FOR EACH vlartik WHERE vlartik.firma = 2 AND vlartik.handweb = YES AND vlartik.artnr = '{0}' NO-LOCK, FIRST itobj WHERE itobj.objekt = vlartik.artnr NO-LOCK BY itobj.reihenfolge.|vlartik.artmerk5&vlartik.artnr" startitem="" maximum=""
+                pageoutput="false">
+                <cms type="outputTag" value="input" name="checkZahlungsoption" val="{0}" class="checkZahlungsoption hidden"></cms>
+            </cms>
+        </cms>
+        <!--Preis-->
+        <cms type="shopModul" value="offertePreise">
+            <div class="row">
+                <!--Betragsart -->
+                <div class="col-6">
+                    <span>
+            <cms type="outputTag" value="span">{1}</cms>
+          </span>
+                </div>
+                <!--Betrag -->
+                <div class="col-6">
+                    <span>CHF <cms type="outputTag" value="span">{2}</cms></span>
+                </div>
+            </div>
+        </cms>
+        <cms type="shopModul" value="offerteTotal">
+            <!-- hidden field for check total -->
+            <cms type="outputTag" value="span" style="visibility:hidden;" id="checkTotal_hidden">{2}</cms>
+            <!--Warenkorb-Gesamttotalzeile -->
+            <div class="row">
+                <!--Typ-->
+                <div class="col-6">
+                    <span>
+            <strong>
+              <cms type="outputTag" value="span">{1}</cms>
+            </strong>
+          </span>
+                </div>
+                <!--Betrag -->
+                <div class="col-6">
+                    <span>
+            <strong>CHF <cms type="outputTag" value="span">{2}</cms></strong>
+          </span>
+                </div>
+            </div>
+        </cms>
+    </div>
+
+    <!--Adressen-->
+    <div class="col-sm-12 col-md-12 bestellung mb-5">
+        <hr>
+        <h3>Adressen</h3>
+        <div class="row">
+            <!-- Lieferadresse -->
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 pb-5">
+                <b>Lieferadresse</b><br>
+                <div class="adressauswahl"></div>
+
+                <cms type="shopModul" value="offerteLieferadresse">
+                    <cms type="outputTag" value="span" class="overflowAdresse">{1}</cms>
+                </cms>
+            </div>
+
+            <!-- Rechnungsadresse -->
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 pb-5">
+                <strong>Rechnungsadresse</strong><br>
+                <cms type="shopModul" value="offerteRechnungsadresse">
+                    <cms type="outputTag" value="span" class="overflowAdresse">{1}</cms>
+                </cms>
+            </div>
+            <div class="col-md-12">
+                <a href="/?Benutzerkonto_Daten" class="universaltext link">
+                    <p>In Ihrem Benutzerkonto können Sie weitere Adressen erfassen oder ändern.</p>
+                </a>
+            </div>
+        </div>
+        <hr>
+
+        <!--Zahlungsoptionen-->
+        <h3>Zahlungsoption</h3>
+        <input type="hidden" name="orderOK_hidden" value="/?Bestellung_Danke">
+        <input type="hidden" name="saferpayTitle_hidden" value="Meier & Cie Webshop">
+
+        <div>
+            <strong id="zahlung_titel">Zahlung in CHF per</strong><br>
+
+            <div class="radio" id="options_zahlungsart">
+                <label>
+          <input type="radio" name="options_zahlungsart" value="rechnung" checked>
+          Rechnung
+        </label>
+            </div>
+
+            <div class="radio">
+                <label id="kreditkarte_m">
+          <input type="radio" name="options_zahlungsart" value="kreditkarte" checked>
+          Kreditkarte (weiter mit Saferpay)
+        </label>
+            </div>
+
+        </div>
+        <hr>
+
+        <!--AGB / Bezahlbutton-->
+        <div class="checkbox">
+            <label>
+            <input type="checkbox" name="checkAGB" value="true">
+            <a class="link btn-link" href="/images/agb_de-CH.pdf" target="_blank">
+              Ich habe die allgemeinen Geschäftsbedingungen gelesen und bin damit einverstanden
+            </a>
+          </label>
+        </div>
+        <br>
+        <button type="button" class="col-12 btn btn-md btn-primary pull-right" onclick="this.form.submit();">
+      <cms type="shopModul" value="offerteTotal">
+        <strong>Total CHF <cms type="outputTag" value="span">{2}</cms></strong>
+      </cms> - Jetzt bestellen
+    </button>
+
+    </div>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        $.get("/ajax?action=GetSesionValue&sValue=offerError&defValue=", function(restObj) {
+            // hier mal ausgeben und prüfen
+            console.log("offerte fehler: " + restObj);
+        });
+
+        // Zahlungsoption Rechnung ausbelnden
+        $.each($('input[name=checkZahlungsoption]'), function() {
+            if ($(this).val() == "KREDIT") {
+                $('#options_zahlungsart').hide()
+                $('#kreditkarte_m').addClass("mt-4");
+            } else {
+                $('#options_zahlungsart').show()
+            };
+        });
+
+    });
+</script>

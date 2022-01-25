@@ -1,0 +1,107 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<!--
+<div class="hidden-xs spacer">
+    <div class="progressbarMain row">
+        <ul class="progressbar col-sm-10 mx-auto d-flex flex-row justify-content-center">
+            <li class="active active-line"><a class="multiPogressbar" href="">1. Registreiren / Anmelden</a></li>
+            <li class="active active-line">2. Adresse</li>
+            <li class="active-line">3. Offerte</li>
+            <li class="">4. Bezahlung</li>
+        </ul>
+    </div>
+</div>
+-->
+
+<div class="col-sm-12 col-md-6 content-box bestellung">
+    <div id="warenkorbOfferte">
+        <h3 class="pb-3">Ihre Bestellung</h3>
+        <cms type="shopModul" value="warenkorbArtikelListe">
+            <div class="pr-2 pb-3 d-flex">
+
+                <div class="pr-4">
+                    <p><b>
+              <cms type="outputTag" value="span">{2}x {1}</cms>
+            </b></p>
+                    <p>
+                        <cms type="outputTag" value="span">{3}</cms> CHF
+                    </p>
+                    <cms type="outputTag" value="a" class="pointer" href="/shop/removeItem?itemID={0}&showCard=true" onclick="javascript:return confirm('Artikel wirklich entfernen?')" title="Artikel entfernen">
+                        <b>Entfernen</b></cms>
+                </div>
+            </div>
+        </cms>
+
+        <!-- Modal content-->
+        <div class="dispNone DV_WarenkorbEmpty">
+            <div class="alert alert-danger">
+                <h4><span class="glyphicon glyphicon-shopping-cart"></span> Keine Artikel im Warenkorb.</h4>
+            </div>
+        </div>
+        <div class="text-center">
+            <cms type="shopModul" value="warenkorbTotalBetrag">
+                <cms type="outputTag" value="h4">BRUTTOPREIS: {1} CHF</cms>
+            </cms>
+        </div>
+    </div>
+</div>
+
+<!-- START: Registration Offerte -->
+
+<div class="col-md-6 col-sm-12 float-right content-box">
+    <h3>Persönliche Angaben</h3>
+
+    <!-- Start: Warenkorb-Adresszeile -->
+    <div class="row">
+
+        <!-- Spalte: Lieferadresse -->
+        <div class="col-sm-12 mb-4">
+            <strong>Lieferadresse</strong><span>&nbsp;&nbsp;&nbsp;</span><br><br>
+            <div class="adressauswahl"></div>
+
+            <cms type="shopModul" value="offerteLieferadresse">
+                <cms type="outputTag" value="a" href="/shop/setKontoEditAdresse?konto_adressnr=r_{0}&successUrl=/?Offerte_Adresse_bearbeiten" class="btn-link pull-right">Bearbeiten</cms>
+                <cms type="outputTag" value="span">{1}</cms>
+            </cms>
+
+        </div>
+
+        <!-- Spalte: Rechnungsadresse -->
+        <div class="col-sm-12">
+            <p><strong>Rechnungsadresse</strong></p>
+
+            <form action="/shop/setRechnungsadresse" method="post">
+                <select id="rechadressnr" name="rechadressnr" class="form-control input-sm adressauswahl" onchange="this.form.action='/shop/setRechnungsadresse';this.form.submit()">
+          <option value="">entspricht meiner Lieferadresse
+
+            <cms type="methode" value="GetRechnungsadressen" parameter="" defaultvalue="" startitem="1" maximum=""
+              pageoutput="false">
+              <cms type="outputTag" value="option" val="{0}">{1}</cms>
+            </cms>
+
+          </option>
+        </select>
+
+                <br>
+
+            </form>
+            <br>
+            <cms type="methode" value="getadressenrechnung" parameter="" defaultvalue="" startitem="" maximum="" pageoutput="false">
+                <cms type="outputTag" id="NewRechAdr_{0}" value="span" val="{0}">
+                    <cms type="outputTag" value="a" href="/shop/setKontoEditAdresse?konto_adressnr={0}&successUrl=/?Offerte_Rechnungsadresse_erfassen" class="btn-link col-sm-6">
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;&nbsp;{1}
+                    </cms>
+                </cms>
+            </cms>
+            <br><br>
+
+        </div>
+    </div>
+    <!-- Ende: Warenkorb-Adresszeile -->
+    <div class="row">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-4 pull-right">
+            <button onclick="location.href='/?Offerte_Bestellabschluss'" type="button" class="btn btn-md btn-primary btn-block btn-clr">Weiter</button>
+        </div>
+    </div>
+</div>

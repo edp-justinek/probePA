@@ -1,0 +1,162 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+        <h5 class="dispInlineBold">Familien / Unternehmen Abo mit bestehendem Abo</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Angehöriger einer Familie / Unternehmen mit bestehendem Abo</h3>Sie sind Angehöriger einer Organisation / Unternehmen mit bestehendem Abo? Dann können Sie sich hier registrieren. Sie benötigen dazu die Firmenadressnummer und den Firmenzugriffscode.
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="content-box">
+            <div class="row">
+                <div class="col-md-10">
+                    <form action="/shop/registerUserUnternehmung" method="post" data-toggle="validator" class="form-horizontal content-box">
+
+                        <h3><b>Konto</b></h3>
+                        <input type="hidden" name="registerOK_hidden" value="/?Registrationsbestätigung?info=Vielen Dank, die Registration war erfolgreich.">
+                        <div class="form-group row">
+
+                            <label for="firmenadressnr" class="col-sm-3 col-form-label">Firmenadressnummer*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="firmenadressnr" name="firmenadressnr" placeholder="Firmenadressnummer erfassen" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="firmzugrcd" class="col-sm-3 col-form-label">Firmenzugriffscode*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="firmzugrcd" name="firmzugrcd" placeholder="Firmenzugriffscode erfassen" required>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4><b>Infos</b></h4>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Anrede" class="col-sm-3 col-form-label">Anrede:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="Anrede" name="Anrede" required>
+                  <option value="01">Herr</option>
+                  <option value="02">Frau</option>
+                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Name" class="col-sm-3 col-form-label">Name*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Name" name="Name" placeholder="Nachname bzw. Firmenname erfassen" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Name" class="col-sm-3 col-form-label">Vorname*:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Vorname" name="Vorname" placeholder="Vorname erfassen" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Strasse" class="col-sm-3 col-form-label">Strasse und Nummer*:</label>
+                            <div class="col-sm-6" cmsparentid="84549" cmselementid="635625815509383645_5372">
+                                <input type="text" class="form-control" id="Strasse" name="Strasse" placeholder="Strasse eingeben" required>
+                            </div>
+                            <div class="offertSpacer visible-xs"></div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="Hausnummer" name="Hausnummer" placeholder="Nr." required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Ort" class="col-sm-3 col-form-label">PLZ / Ort*:</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="PLZ" name="PLZ" placeholder="PLZ eingeben" required>
+                            </div>
+                            <div class="offertSpacer visible-xs"></div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="Ort" name="Ort" placeholder="Ortschaft eingeben" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Land" class="col-sm-3 col-form-label">Land*:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="Land" name="Land">
+                  <option value="CH">Schweiz</option>
+                  <option value="DE">Deutschland</option>
+                  <option value="AT">Österreich</option>
+                  <option value="IT">Italien</option>
+                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="EmailAdr" class="col-sm-3 col-form-label">E-Mail-Adresse*:</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="EmailAdr" name="EmailAdr" placeholder="E-Mail-Adresse erfassen" data-error="ungültige E-Mail-Adresse" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="passwort" class="col-sm-3 col-form-label">Passwort*:</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="password" data-minlength="6" tabindex="0" class="form-control pwd checkme" id="passwort" name="passwort" placeholder="Passwort" required>
+                                    <span class="input-group-btn">
+                    <button class="btn btn-default btnPWEye reveal" tabindex="-1" type="button" onclick="showPW()"><i
+                        class="glyphicon glyphicon-eye-open"></i></button>
+                  </span>
+                                </div>
+                                <span class="help-block">Minimal 6 Zeichen</span>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="password" data-minlength="6" tabindex="0" class="form-control pwd checkme" id="passwort_hidden" name="passwort_hidden" data-match="#passwort" data-match-error="Passwörter sind nicht identisch" placeholder="Passwort wiederholen" required>
+                                    <span class="input-group-btn">
+                    <button class="btn btn-default btnPWEye reveal" tabindex="-1" type="button"
+                      onclick="showSecondPW()"><i class="glyphicon glyphicon-eye-open"></i></button>
+                  </span>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <input type="checkbox" name="checkAGB" value="true">
+                                    <a class="link btn-link" href="/images/agb_de-CH.pdf" target="_blank">
+                    Ich habe die allgemeinen Geschäftsbedingungen gelesen und bin damit einverstanden
+                  </a>
+                                </p>
+
+                                <br><br>
+                            </div>
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-4">
+                                <button type="submit" class="float-right btn btn-md btn-primary btn-block btn-clr" onclick="PWcheck()">Registrieren</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
