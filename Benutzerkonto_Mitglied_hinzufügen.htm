@@ -1,47 +1,42 @@
 <cms type="masterPage" value="masterpage.htm"></cms>
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-12">
         <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
-        <h5 class="dispInlineBold">Familien- / Organisationsabo Registrieren</h5>
+        <h5 class="dispInline"><a href="/?Benutzerkonto_Daten">Benutzerkonto</a> / </h5>
+        <h5 class="dispInlineBold">Zugänge</h5>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-12">
-        <h3>Miglieder einer Familie- / Organisationsabo</h3>Sie sind Miglieder einer Familie- / Organisationsabo mit Abo? 
-        <br> Dann können Sie sich hier registrieren und mit dem Zugriffscode dem bestehenden Abo beizutreten.
+    <div class="col-md-12">
+        <h2 class="text-center">Mitglieder hinzufügen</h2>
     </div>
 </div>
 
-<div class="row content-box m-3">
+
+<div class="col-xs-12 mb-5">
+    <div class="text-center">
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Daten">
+            <h4>Daten</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Abos">
+            <h4>Abos</h4>
+        </a>
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
+            <h4>Bestellungen</h4>
+        </a>
+		<a class="btn btn-light mb-2" href="/?Benutzerkonto_Mitglieder"><h4>Abo Miglieder</h4></a>
+    </div>
+</div>
+
+<h3>Neues Mitglied</h3>
+
+<div class="row">
     <div class="col-sm-10">
+        <div class="content-box">
             <form action="/shop/registerUser" method="post" data-toggle="validator" class="form-horizontal content-box">
                 
-				<h1><b>Konto</b></h1>
-				
-                <input type="hidden" name="registerOK_hidden" value="/?Registrationsbestätigung?info=Vielen Dank, die Registration war erfolgreich.">
-
-                <div class="form-group row">
-                    <label for="admmail" class="col-sm-2 col-form-label">Administrator - E-Mail*:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="admmail" name="admmail" placeholder="Administrator E-Mail*">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="zugrcd" class="col-sm-2 col-form-label">Zugriffscode*:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="zugrcd" name="zugrcd" placeholder="Zugriffscode erfassen">
-                    </div>
-                </div>
-				
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3><b>Infos</b></h3>
-                    </div>
-                </div>
-
                 <div class="form-group row">
                     <label for="Anrede" class="col-sm-2 col-form-label">Anrede:</label>
                     <div class="col-sm-9">
@@ -125,8 +120,7 @@
                         <div class="input-group">
                             <input type="password" data-minlength="6" tabindex="0" class="form-control pwd checkme" id="passwort_hidden" name="passwort_hidden" data-match="#passwort" data-match-error="Passwörter sind nicht identisch" placeholder="Passwort wiederholen" required>
                             <span class="input-group-btn">
-            <button class="btn btn-default btnPWEye reveal" tabindex="-1" type="button"
-                onclick="showSecondPW()"><i class="glyphicon glyphicon-eye-open"></i></button>
+            <button class="btn btn-default btnPWEye reveal" tabindex="-1" type="button" onclick="showSecondPW()"><i class="glyphicon glyphicon-eye-open"></i></button>
             </span>
                         </div>
                         <div class="help-block with-errors"></div>
@@ -143,14 +137,19 @@
             </a>
                         </p>
 
-                        <br><br>
+                        
                     </div>
                     <div class="col-sm-7"></div>
                     <div class="col-sm-4">
               
-						<button type="submit" class="float-right btn btn-md btn-primary btn-block btn-clr" onclick="PWcheck()"><a class="aLink" href="/?home">Registrieren</a></button>
+						<button type="submit" class="float-right btn btn-md btn-primary btn-block btn-clr" onclick="PWcheck()"><a class="aLink" href="/?Benutzerkonto_Mitglieder">Mitglied hinzufügen</a></button>
+                    </div>					
+                </div>
+				
+				<div class="form-group row">
+                    <div class="col-sm-10"></div>
+                    <div class="col-sm-2">
+                        <a href="/?Benutzerkonto_Mitglieder">Zurück</a>
                     </div>
                 </div>
             </form>
-    </div>
-</div>

@@ -1,0 +1,138 @@
+<cms type="masterPage" value="masterpage.htm"></cms>
+<style>
+  .mitglTable tr > th {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding: 10px 5px 10px 10px;
+    text-align:center;
+  }
+  .mitglTable tr > td{
+    text-align:center;
+    padding: 5px;
+  }
+</style>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h5 class="dispInline"><a href="/?home">Hauptseite</a> / </h5>
+    <h5 class="dispInline"><a href="/?Benutzerkonto_Daten">Benutzerkonto</a> / </h5>
+    <h5 class="dispInlineBold">Abo Mitglieder</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2 class="text-center">Mitglieder verwalten</h2>
+  </div>
+</div>
+
+
+<div class="col-xs-12 mb-5">
+  <div class="text-center">
+    <a class="btn btn-light mb-2" href="/?Benutzerkonto_Daten">
+      <h4>Daten</h4>
+    </a>
+    <a class="btn btn-light mb-2" href="/?Benutzerkonto_Abos">
+      <h4>Abos</u>
+      </h4>
+    </a>
+    <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
+      <h4>Bestellungen</h4>
+    </a>
+    <a class="btn btn-light mb-2" href="/?Benutzerkonto_Mitglieder"><h4>Abo Mitglieder</h4></a>
+  </div>
+</div>
+
+<h3>Abo Mitglieder verwalten</h3><br>
+
+<div class="row content-box">
+  <div class="col-sm-3 text-center">
+    <b>Administrator E-Mail:</b> <br>
+    jkaeslin@edp.ch
+  </div>
+  <div class="col-sm-4 text-center">
+    <b>Administrator Zugriffsnummer:</b> <br>
+    <input value="123456"></input>
+  </div>
+  <div class="col-sm-3 text-center">
+    <b>Mehrpersonen Abo:</b> <br>
+    <select name="abos" id="abos">
+      <option value="abo1">EDP Today Digital</option>
+      <option value="abo2">EDP Weekly Digital</option>
+    </select>
+  </div>
+</div>
+<br>
+
+
+<table class="content-box mitglTable" width="80%">
+  <tr>
+    <th>Name</th>
+    <th>E-Mail</th>
+    <th>Admin</th>
+    <th>Löschen</th>
+  </tr>
+  <tr>
+    <td>Justine	 Käslin</td>
+    <td>jkaeslin@edp</td>
+    <!--Anderen Miglied Administrationsrecht vergeben-->
+    <td><input type="checkbox" checked disabled></td>
+    <!--Mitglied löschen-->
+    <td><button data-target="#deletMitglied" data-toggle="modal" class="glyphicon glyphicon-trash"></button></td>
+  </tr>
+  <tr>
+    <td>Grace Hop</td>
+    <td>grace.hop@edp.ch</td>
+    <!--Anderen Miglied Administrationsrecht vergeben-->
+    <td><input type="checkbox" checked></td>
+    <!--Mitglied löschen-->
+    <td><button data-target="#deletMitglied" data-toggle="modal" class="glyphicon glyphicon-trash"></button></td>
+  </tr>
+  <tr>
+    <td>Mag Ham</td>
+    <td>mag.ham@edp.ch</td>
+    <!--Anderen Miglied Administrationsrecht vergeben-->
+    <td><input type="checkbox"></td>
+    <!--Mitglied löschen-->
+    <td><button data-target="#deletMitglied" data-toggle="modal" class="glyphicon glyphicon-trash"></button></td>
+  </tr>
+  <tr>
+    <td>Joan Clarke</td>
+    <td>joan.clarke@edp.ch</td>
+    <!--Anderen Miglied Administrationsrecht vergeben-->
+    <td><input type="checkbox"></td>
+    <!--Mitglied löschen-->
+    <td><button data-target="#deletMitglied" data-toggle="modal" class="glyphicon glyphicon-trash"></button></td>
+  </tr>
+</table>
+<br>
+<div class="col-sm-8 col-md-7"></div>
+<!--Mitglied hinzufügen-->
+<div class="col-sm-4 col-md-3">
+  <button class="float-right mr-4 btn btn-md btn-primary btn-block btn-clr"><a class="aLink" href="/?Benutzerkonto_Mitglied_hinzufügen"> Mitglied hinzufügen</a></button>
+</div>
+</cms>
+</td>
+<td>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deletMitglied" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Mitglied löschen</h4>
+          </div>
+          <div class="modal-body">
+            <p>Sind Sie sicher dass Sie dieses Mitglied löschen möchten?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+          </div>
+        </div>
+
+      </div>
+    </div>

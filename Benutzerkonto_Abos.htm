@@ -25,7 +25,8 @@
         <a class="btn btn-light mb-2" href="/?Benutzerkonto_Bestellungen">
             <h4>Bestellungen</h4>
         </a>
-        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Zugaenge"><h4>Zugänge</h4></a>
+		<!-- Zusätzliches Register -->
+        <a class="btn btn-light mb-2" href="/?Benutzerkonto_Mitglieder"><h4>Abo Mitglieder</h4></a>
     </div>
 </div>
 
@@ -60,7 +61,8 @@
                     </cms>&nbsp;<br>
                     <cms type="outputTag" value="a" class="btn btn-md btn-link p-0 pt-2" href="/?Benutzerkonto_Abo_kuenden?mutType={9}&vorgangsnr={0}&posNr={1}&artikel={2}">{10}</cms>
                     &nbsp;<br>
-
+					<button data-target="#wechselMehrpAbo" data-toggle="modal" >Wechsel zu Mehrpersonen Abo</button>
+					&nbsp;<br>
                 </div>
 
                 <div class="col-sm-12">
@@ -75,6 +77,28 @@
     </button>
 
         <!-- // abos -->
+		
+		 <!-- Modal -->
+		  <div class="modal fade" id="wechselMehrpAbo" role="dialog">
+			<div class="modal-dialog">
+			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Bestehendes Abo in Mehrpersonen - Abo umwandeln.</h4>
+				</div>
+				<div class="modal-body">
+				  <p>Sind Sie sicher dass sie einen Aufpreis von 10.00 pro Jahr zahlen möchten?</p>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
 
         <div id="AboInfos_gesperrt" class="modal fade zIndex" role="dialog">
             <div class="modal-dialog">
